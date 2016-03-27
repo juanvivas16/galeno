@@ -1,0 +1,112 @@
+package data_model;
+
+import java.sql.Time;
+import java.util.Date;
+
+/**
+ * Created by victory on 3/26/16.
+ */
+public class Appointment
+{
+    private Long _id;
+    private Long _patient_id;
+    private Long _user_id;
+    private String _phone_num;
+    private Date _date;
+    private Time _time;
+    private String _description;
+    private Appointment_type _type;
+
+
+    public Appointment(Long _id, Long _patient_id, Long _user_id, String _phone_num, Date _date, Time _time, String _description, Appointment_type _type)
+    {
+        this._id = _id;
+        this._patient_id = _patient_id;
+        this._user_id = _user_id;
+        this._phone_num = _phone_num;
+        this._date = _date;
+        this._time = _time;
+        this._description = _description;
+        this._type = _type;
+    }
+
+    public Long get_id()
+    {
+        return _id;
+    }
+
+    public void set_id(Long _id)
+    {
+        this._id = _id;
+    }
+
+    public Long get_patient_id()
+    {
+        return _patient_id;
+    }
+
+    public void set_patient_id(Long _patient_id)
+    {
+        this._patient_id = _patient_id;
+    }
+
+    public Long get_user_id()
+    {
+        return _user_id;
+    }
+
+    public void set_user_id(Long _user_id)
+    {
+        this._user_id = _user_id;
+    }
+
+    public String get_phone_num()
+    {
+        return _phone_num;
+    }
+
+    public void set_phone_num(String _phone_num)
+    {
+        this._phone_num = _phone_num;
+    }
+
+    public Date get_date()
+    {
+        return _date;
+    }
+
+    public void set_date(Date _date)
+    {
+        this._date = _date;
+    }
+
+    public Time get_time()
+    {
+        return _time;
+    }
+
+    public void set_time(Time _time)
+    {
+        this._time = _time;
+    }
+
+    public String get_description()
+    {
+        return _description;
+    }
+
+    public void set_description(String _description)
+    {
+        this._description = _description;
+    }
+
+    public Appointment_type get_type()
+    {
+        return _type;
+    }
+
+    public void set_type(Appointment_type _type)
+    {
+        this._type = _type;
+    }
+}
