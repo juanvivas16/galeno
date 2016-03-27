@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="29.0" prefWidth="600.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Archivo">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Acerca" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Logo.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="303.0" layoutY="183.0" prefHeight="29.0" prefWidth="102.0" />
+      <Label layoutX="195.0" layoutY="188.0" text="Codigo Paciente" />
+      <DatePicker layoutX="303.0" layoutY="234.0" prefHeight="29.0" prefWidth="102.0" />
+      <Label layoutX="195.0" layoutY="239.0" text="Fecha" />
+      <TextField layoutX="303.0" layoutY="279.0" prefHeight="29.0" prefWidth="102.0" />
+      <Label layoutX="195.0" layoutY="284.0" text="Hora" />
+      <ChoiceBox layoutX="303.0" layoutY="335.0" prefHeight="29.0" prefWidth="102.0" />
+      <Label layoutX="198.0" layoutY="340.0" text="Tipo" />
+   </children>
+</Pane>

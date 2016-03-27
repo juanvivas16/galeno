@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" fx:controller="main_io.Controller" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="29.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Salir" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Acerca" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+       <TextField fx:id="user_text_field" layoutX="223.0" layoutY="211.0" />
+        <PasswordField fx:id="pass_text_field" layoutX="223.0" layoutY="253.0" />
+      <Label layoutX="160.0" layoutY="216.0" text="Usuario:" />
+      <Label layoutX="159.0" layoutY="258.0" text="Clave:" />
+      <CheckBox layoutX="300.0" layoutY="303.0" mnemonicParsing="false" text="Recordar" />
+      <Button layoutX="223.0" layoutY="298.0" mnemonicParsing="false" text="Entrar" onAction="#handle_login_button_action" />
+   </children>
+</Pane>

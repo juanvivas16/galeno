@@ -37,5 +37,10 @@ public class Prescripion
         this._items = _items;
     }
 
-    //todo insert item
+    public boolean insert_item (Prescription_item _item)
+    {
+        return this._items.add(_item);
+    }
+
+
 }

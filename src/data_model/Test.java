@@ -49,5 +49,8 @@ public class Test
         this._items = _items;
     }
 
-    //todo insert test item
+   public boolean insert_item(Test_item item)
+   {
+       return this._items.add(item);
+   }
 }

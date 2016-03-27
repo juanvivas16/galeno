@@ -37,5 +37,8 @@ public class Record
     }
 
 
-    // todo insert item in _items
+    public boolean insert_item(Record_item item)
+    {
+        return this._items.add(item);
+    }
 }

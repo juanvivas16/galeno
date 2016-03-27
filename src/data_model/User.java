@@ -8,6 +8,7 @@ import java.util.Objects;
  */
 public class User extends Person
 {
+    //todo change rol to enum
     private int _rol;
     private String _pass;
 
