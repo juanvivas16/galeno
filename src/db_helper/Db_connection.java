@@ -26,11 +26,13 @@ public class Db_connection
         FileInputStream __in = null;
         try
         {
-            __in = new FileInputStream("/etc/db_config.properties");
+            __in = new FileInputStream("src/etc/db_config.properties");
+            //System.out.println("properties readed");
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
+            //System.out.println("properties faild");
             return false;
         }
 
@@ -42,6 +44,8 @@ public class Db_connection
             this._pass = __prop.getProperty("pass");
 
             __in.close();
+
+            //System.out.println("properties loaded"+ _url + _user + _pass);
         }
         catch (IOException e)
         {
@@ -61,8 +65,14 @@ public class Db_connection
             try
             {
                 _con = DriverManager.getConnection(this._url, this._user, this._pass);
+
+                //System.out.println("connected to db");
+
+
             } catch (SQLException e)
             {
+                //System.out.println("Faild to connect to db");
+
                 e.printStackTrace();
                 return false;
             }
