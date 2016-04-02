@@ -23,15 +23,17 @@ public class Controller
         System.out.println("clicked Entrar");
         con = db.get_connection();
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("select name from Person");
+        ResultSet rs = st.executeQuery("select name,pass from Person p, User u where p.id=u.id");
+    //    ResultSet ps = st.executeQuery("select pass from User");
 
         while (rs.next())
         {
             String name = rs.getString("name");
+            String pass = rs.getString("pass");
             System.out.println("name: " + name);
             System.out.println("field: " + user_text_field.getText());
 
-            if (user_text_field.getText().equals(name))
+            if (user_text_field.getText().equals(name) && pass_text_field.getText().equals(pass))
                 System.out.println("User name registered");
 
         }
