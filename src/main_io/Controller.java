@@ -19,10 +19,13 @@ public class Controller {
     private Db_connection db = new Db_connection();
     @FXML
     private Connection con;
+    @FXML
+    private boolean login;
 
     @FXML
-    protected void handle_login_button_action(ActionEvent event){ //throws SQLException {
+    protected boolean handle_login_button_action(ActionEvent event){ //throws SQLException {
         try {
+            login = false;
             System.out.println("clicked Entrar");
             con = db.get_connection();
             Statement st = con.createStatement();
@@ -35,13 +38,16 @@ public class Controller {
                 System.out.println("name: " + name);
                 System.out.println("field: " + user_text_field.getText());
 
-                if (user_text_field.getText().equals(name) && pass_text_field.getText().equals(pass))
+                if (user_text_field.getText().equals(name) && pass_text_field.getText().equals(pass)) {
                     System.out.println("User name registered");
+                    login = true;
+                }
 
             }
         } catch (SQLException err) {
             System.out.println(err);
         }
+        return login;
         //user_text_field.getText()
         //pass_text_field.getText()
     }
