@@ -17,17 +17,15 @@ public class Controller
     @FXML private Db_connection db = new Db_connection();
     @FXML private Connection con;
 
-
-    @FXML protected void handle_login_button_action(ActionEvent event) throws SQLException
+    @FXML protected void handle_login_button_action (ActionEvent event) throws SQLException
     {
         System.out.println("clicked Entrar");
         con = db.get_connection();
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("select name,pass from Person p, User u where p.id=u.id");
-    //    ResultSet ps = st.executeQuery("select pass from User");
+        //    ResultSet ps = st.executeQuery("select pass from User");
 
-        while (rs.next())
-        {
+        while (rs.next()) {
             String name = rs.getString("name");
             String pass = rs.getString("pass");
             System.out.println("name: " + name);
@@ -37,11 +35,9 @@ public class Controller
                 System.out.println("User name registered");
 
         }
-
-        //user_text_field.getText()
-        //pass_text_field.getText()
-
-
     }
+    //user_text_field.getText()
+    //pass_text_field.getText()
+
 
 }
