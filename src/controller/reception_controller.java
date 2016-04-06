@@ -30,8 +30,6 @@ public class reception_controller
     @FXML
     private Connection con;
 
-
-
     @FXML
     protected void handle_add_payment_button_action(ActionEvent event)
     {
