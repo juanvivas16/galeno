@@ -1,13 +1,14 @@
 package db_helper;
 
 
+import data_model.Person;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * Created by victory on 3/27/16.
@@ -19,6 +20,11 @@ public class Db_connection
     private String _user;
     private String _pass;
 
+
+    public Db_connection()
+    {
+        this.init_connection();
+    }
 
     private boolean get_data_from_prop()
     {
@@ -111,6 +117,62 @@ public class Db_connection
             return true;
         }
         return true;
+    }
+
+
+    public ResultSet execute_query(String sql_query)
+    {
+        try
+        {
+            Statement __st =  this._con.createStatement();
+            return __st.executeQuery(sql_query);
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+
+    public int execute_update(String sql_update_query)
+    {
+        try
+        {
+            Statement __st =  this._con.createStatement();
+            return __st.executeUpdate(sql_update_query);
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return  -1;
+    }
+
+
+
+    public Person get_person_by_id(String id) throws SQLException
+    {
+        ResultSet rs = this.execute_query("select * from Person where Person.id=" + id);
+
+        if (rs.next())
+        {
+            Long id_long = rs.getLong("id");
+            String name = rs.getString("name");
+            String lname = rs.getString("last_name");
+            String gender = rs.getString("gender");
+            Date bdate = rs.getDate("birth_date");
+            Date rdate = rs.getDate("reg_date");
+            String direction = rs.getString("direction");
+            String phone_num = rs.getString("phone_num");
+
+            return new Person(id_long, name, lname, gender, bdate, rdate , direction, phone_num);
+
+        }
+
+
+        return null;
+
     }
 
 }

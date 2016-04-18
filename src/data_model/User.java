@@ -1,6 +1,7 @@
 package data_model;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -13,9 +14,9 @@ public class User extends Person
     private String _pass;
 
 
-    public User(Long id, String name, char gender, Date birth_date, Date reg_date, String direction, String phone_num, Long _id, int _rol, String _pass)
+    public User(Long id, String name, String last_name, String gender, Date birth_date, Date reg_date, String direction, String phone_num, Long _id, int _rol, String _pass)
     {
-        super(id, name, gender, birth_date, reg_date, direction, phone_num);
+        super(id, name, last_name, gender, birth_date, reg_date, direction, phone_num);
         this._rol = _rol;
         this._pass = _pass;
     }

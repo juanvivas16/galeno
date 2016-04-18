@@ -25,9 +25,6 @@ INSERT INTO `Person` (`id`, `name`, `gender`, `birth_date`, `reg_date`, `directi
 (1,	'nombre',	'm',	'2016-03-26',	'2016-03-26',	'direcion de prueba simple',	'04162723452');
 
 
-INSERT INTO `Person` (`id`, `name`, `gender`, `birth_date`, `reg_date`, `direction`, `phone_num`) VALUES
-(1,	'nombre',	'm',	'2016-03-26',	'2016-03-26',	'direcion de prueba simple',	'04162723452');
-
 
 DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
@@ -42,3 +39,15 @@ INSERT INTO `User` (`id`, `rol`, `pass`) VALUES
 (1,	1,	'1234');
 
 -- 2016-04-02 18:57:29
+
+-- nombre 12345     username and password for test
+
+--17/04/2016
+--agregar apellido en la tabla persona
+
+ALTER TABLE `Person`
+ADD `last_name` varchar(32) COLLATE 'utf8_general_ci' NOT NULL AFTER `name`;
+
+
+
+

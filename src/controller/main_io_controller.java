@@ -22,8 +22,7 @@ public class main_io_controller {
     private TextField pass_text_field;
     @FXML
     private Db_connection db = new Db_connection();
-    @FXML
-    private Connection con;
+    //@FXML private Connection con;
     @FXML
     private boolean login;
     @FXML
@@ -38,9 +37,10 @@ public class main_io_controller {
         {
             login = false;
             System.out.println("clicked Entrar");
-            con = db.get_connection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select name,pass,rol from Person p, User u where p.id=u.id");
+            //con = db.get_connection();
+            //Statement st = con.createStatement();
+            //ResultSet rs = st.executeQuery("select name,pass,rol from Person p, User u where p.id=u.id");
+            ResultSet rs = db.execute_query("select name,pass,rol from Person p, User u where p.id=u.id");
             //    ResultSet ps = st.executeQuery("select pass from User");
 
 
