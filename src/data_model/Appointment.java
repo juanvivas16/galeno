@@ -1,7 +1,7 @@
 package data_model;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by victory on 3/26/16.
@@ -11,23 +11,31 @@ public class Appointment
     private Long _id;
     private Long _patient_id;
     private Long _user_id;
-    private String _phone_num;
+    private Long _doctor_id;
+    //private String _phone_num;
     private Date _date;
     private Time _time;
     private String _description;
     private Appointment_type _type;
 
 
-    public Appointment(Long _id, Long _patient_id, Long _user_id, String _phone_num, Date _date, Time _time, String _description, Appointment_type _type)
+    public Appointment(Long _id, Long _patient_id, Long _user_id, Long _doctor_id, Date _date, Time _time, String _description, Appointment_type _type)
     {
         this._id = _id;
         this._patient_id = _patient_id;
         this._user_id = _user_id;
-        this._phone_num = _phone_num;
+        this._doctor_id = _doctor_id;
+        //this._phone_num = _phone_num;
         this._date = _date;
         this._time = _time;
         this._description = _description;
         this._type = _type;
+    }
+
+
+    public Appointment()
+    {
+
     }
 
     public Long get_id()
@@ -60,14 +68,14 @@ public class Appointment
         this._user_id = _user_id;
     }
 
-    public String get_phone_num()
+    public Long get_doctor_id()
     {
-        return _phone_num;
+        return _doctor_id;
     }
 
-    public void set_phone_num(String _phone_num)
+    public void set_doctor_id(Long _doctor_id)
     {
-        this._phone_num = _phone_num;
+        this._doctor_id = _doctor_id;
     }
 
     public Date get_date()

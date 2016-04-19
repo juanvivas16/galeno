@@ -9,18 +9,22 @@ package controller;
 import data_model.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import db_helper.Db_connection;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Calendar;
 
 
-public class reception_controller
+public class Reception_controller
 {
     @FXML private TextField id_text_field;
     @FXML private TextField name_text_field;
@@ -38,15 +42,27 @@ public class reception_controller
     @FXML private Button new_patient_data_button;
     @FXML private Label status_label;
 
+    @FXML private Pane pane;
+
     private boolean is_id = true;
     private boolean is_name = false;
     private boolean is_new_patient = false;
     private static Person person = new Person();
 
+    private Long user_id;
+
     @FXML private Db_connection db = new Db_connection();
 
 
+    public Long get_user_id()
+    {
+        return user_id;
+    }
 
+    public void set_user_id(Long user_id)
+    {
+        this.user_id = user_id;
+    }
 
 
     @FXML protected  void handle_id_text_changed_action(ActionEvent event)
@@ -68,12 +84,14 @@ public class reception_controller
 
     @FXML protected void handle_search_button_action(ActionEvent event) throws SQLException
     {
+        //System.out.print("ID from prevoius: " + get_user_id().toString() );
         //search by id
         if (is_id)
         {
             String id = id_text_field.getText();
 
             this.person = db.get_person_by_id(id);
+            //patient exist
             if (person != null)
             {
                 this.name_text_field.setText(person.get_name());
@@ -87,6 +105,9 @@ public class reception_controller
                 this.status_label.setText("");
                 this.edit_patient_data_button.setDisable(false);
                 this.new_patient_data_button.setDisable(true);
+
+                this.new_appointment_button.setDisable(false);
+
 
             }
             else
@@ -103,6 +124,9 @@ public class reception_controller
                 this.new_patient_data_button.setDisable(false);
                 this.edit_patient_data_button.setDisable(true);
 
+                this.new_appointment_button.setDisable(true);
+
+
 
             }
 
@@ -110,9 +134,16 @@ public class reception_controller
         }
     }
 
-    @FXML protected  void handle_new_appointment_button_action  (ActionEvent event)
+    @FXML protected  void handle_new_appointment_button_action  (ActionEvent event) throws IOException
     {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/add_appointment_ui.fxml"));
 
+        Parent root = (Parent)fxmlLoader.load();
+        Appointment_controller controller = fxmlLoader.<Appointment_controller>getController();
+        controller.set_user_id(user_id);
+        controller.set_patient_id(person.get_id());
+
+        pane.getChildren().setAll(root);
 
     }
 

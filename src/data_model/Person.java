@@ -117,4 +117,11 @@ public class Person
     {
         this._phone_num = phone_num;
     }
+
+    @Override
+    public String toString()
+    {
+        return this._name + " " + this._last_name ;
+    }
+
 }

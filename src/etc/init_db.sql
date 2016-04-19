@@ -48,6 +48,28 @@ INSERT INTO `User` (`id`, `rol`, `pass`) VALUES
 ALTER TABLE `Person`
 ADD `last_name` varchar(32) COLLATE 'utf8_general_ci' NOT NULL AFTER `name`;
 
+ALTER TABLE `User`
+CHANGE `id` `person_id` bigint(20) unsigned NOT NULL FIRST;
 
 
+CREATE TABLE `Appointment` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `patient_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `doctor_id` bigint(20) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `type` enum('FIRST_APPOINTMENT','ROUTINE_CHECKUP','SICK_VISIT','VACCINATIONS','TRAVEL_CLINIC') NOT NULL
+);
 
+
+ALTER TABLE `Appointment`
+CHANGE `id` `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT FIRST,
+CHANGE `patient_id` `patient_id` bigint(20) unsigned NOT NULL AFTER `id`,
+CHANGE `user_id` `user_id` bigint(20) unsigned NOT NULL AFTER `patient_id`,
+CHANGE `doctor_id` `doctor_id` bigint(20) unsigned NOT NULL AFTER `user_id`;
+
+
+ALTER TABLE `Appointment`
+ADD FOREIGN KEY (`doctor_id`) REFERENCES `Person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE

@@ -13,7 +13,7 @@ public class Main extends Application {
     {
         Parent root = FXMLLoader.load(getClass().getResource("/ui/login_ui.fxml"));
         primaryStage.setTitle("Iniciar sesion | Galeno (C) 2016");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 630 , 640));
         primaryStage.show();
     }
 
