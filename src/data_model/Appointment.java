@@ -1,5 +1,9 @@
 package data_model;
 
+import db_helper.Db_connection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Date;
 
@@ -117,4 +121,40 @@ public class Appointment
     {
         this._type = _type;
     }
+
+    @Override public String toString()
+    {
+        try
+        {
+            Person tmp_patient = this.get_patient();
+            Person tmp_doctor = this.get_doctor();
+
+            return  tmp_patient.get_name() + " " + this.get_date().toString() + " " + tmp_doctor.get_name() +
+                    " " + tmp_doctor.get_last_name();
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+
+    public Person get_patient() throws SQLException
+    {
+        Db_connection db = new Db_connection();
+
+        return db.get_person_by_id(this._patient_id.toString());
+
+    }
+
+    public Person get_doctor() throws SQLException
+    {
+        Db_connection db = new Db_connection();
+
+        return db.get_person_by_id(this._doctor_id.toString());
+
+    }
+
 }

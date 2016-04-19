@@ -136,12 +136,15 @@ public class Reception_controller
 
     @FXML protected  void handle_new_appointment_button_action  (ActionEvent event) throws IOException
     {
+        //prepear and load new fxml ui
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/add_appointment_ui.fxml"));
 
         Parent root = (Parent)fxmlLoader.load();
+        //access another controller to pass parameters and populate list view
         Appointment_controller controller = fxmlLoader.<Appointment_controller>getController();
         controller.set_user_id(user_id);
         controller.set_patient_id(person.get_id());
+        controller.populate_appointment_list_view();
 
         pane.getChildren().setAll(root);
 
