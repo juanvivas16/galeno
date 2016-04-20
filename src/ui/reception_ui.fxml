@@ -38,9 +38,9 @@
       <Button fx:id="add_queue_button" disable="true" layoutX="298.0" layoutY="325.0" mnemonicParsing="false" onAction="#handle_add_queue_button_action" text="Agregar en Cola" />
       <Button fx:id="edit_patient_data_button" disable="true" layoutX="39.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_edit_patient_data_button_action" text="Editar Datos Paciente" />
       <Separator layoutX="420.0" layoutY="180.0" orientation="VERTICAL" prefHeight="318.0" prefWidth="2.0" />
-      <Label layoutX="41.0" layoutY="249.0" text="Apellicos:" />
-      <Label layoutX="39.0" layoutY="413.0" text="Fecha Nacimiento:" />
-      <Label layoutX="43.0" layoutY="330.0" text="Telefono" />
+      <Label layoutX="41.0" layoutY="249.0" text="Apellidos:" />
+      <Label layoutX="39.0" layoutY="413.0" text="Fecha Naci.:" />
+      <Label layoutX="43.0" layoutY="330.0" text="Telefono:" />
       <Label layoutX="40.0" layoutY="289.0" text="Direccion:" />
       <TextField fx:id="last_name_text_field" disable="true" layoutX="127.0" layoutY="244.0" prefHeight="29.0" prefWidth="163.0" />
       <TextField fx:id="direction_text_field" disable="true" layoutX="127.0" layoutY="284.0" prefHeight="29.0" prefWidth="163.0" />
