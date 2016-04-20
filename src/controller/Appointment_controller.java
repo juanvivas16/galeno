@@ -9,9 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -34,6 +38,7 @@ public class Appointment_controller implements Initializable
     @FXML private TextField time_text_field;
     @FXML private TextArea description_text_area;
     @FXML private ListView appointment_list_view;
+    @FXML private Pane pane;
 
     private Long user_id, patient_id, doctor_id;
     private Db_connection db = new Db_connection();
@@ -162,7 +167,7 @@ public class Appointment_controller implements Initializable
 
     }
 
-    @FXML protected void handle_add_appointment_button_action(ActionEvent event)
+    @FXML protected void handle_add_appointment_button_action(ActionEvent event) throws IOException, SQLException
     {
         Appointment appointment = new Appointment();
         appointment.set_user_id(this.get_user_id());
@@ -203,16 +208,27 @@ public class Appointment_controller implements Initializable
         {
             //insert into the DB
             if (this.insert_appointment_in_db(appointment) != 0)
+            {
                 this.status_label.setText("¡Cita Agregada con éxito!");
 
-                //todo go back to reception of the same patient
+                //go back to reception of the same patient DONE!
 
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/reception_ui.fxml"));
+
+                Parent root = (Parent) fxmlLoader.load();
+                Reception_controller controller = fxmlLoader.<Reception_controller>getController();
+                controller.set_user_id(this.user_id);
+                controller.id_text_field.setText(this.patient_id.toString());
+                controller.handle_search_button_action(new ActionEvent());
+                pane.getChildren().setAll(root);
+            }
             else
                 this.status_label.setText("Error al insertar");
         }
         else
         {
             //todo update appointment data in db
+
         }
     }
 
@@ -233,8 +249,17 @@ public class Appointment_controller implements Initializable
     }
 
 
-    @FXML protected void handle_cancel_button_action(ActionEvent event)
+    @FXML protected void handle_cancel_button_action(ActionEvent event) throws IOException, SQLException
     {
+        //return to reception ui, maintaining the same patient information
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/reception_ui.fxml"));
+
+        Parent root = (Parent) fxmlLoader.load();
+        Reception_controller controller = fxmlLoader.<Reception_controller>getController();
+        controller.set_user_id(this.user_id);
+        controller.id_text_field.setText(this.patient_id.toString());
+        controller.handle_search_button_action(new ActionEvent());
+        pane.getChildren().setAll(root);
 
     }
 

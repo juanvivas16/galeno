@@ -6,27 +6,33 @@ package controller;
 
 
 
+import data_model.Appointment;
+import data_model.Appointment_type;
 import data_model.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import db_helper.Db_connection;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
-public class Reception_controller
+public class Reception_controller implements Initializable
 {
-    @FXML private TextField id_text_field;
+    @FXML protected TextField id_text_field;
     @FXML private TextField name_text_field;
     @FXML private TextField last_name_text_field;
     @FXML private TextField direction_text_field;
@@ -41,6 +47,7 @@ public class Reception_controller
     @FXML private Button add_payment_button;
     @FXML private Button new_patient_data_button;
     @FXML private Label status_label;
+    @FXML private ListView next_appointment_list_view;
 
     @FXML private Pane pane;
 
@@ -52,6 +59,53 @@ public class Reception_controller
     private Long user_id;
 
     @FXML private Db_connection db = new Db_connection();
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+
+        //populate appointment list view
+        java.util.Date date = new java.util.Date();
+
+        String qu = "SELECT a.id, a.patient_id, a.doctor_id, a.description, a.type, a.date, a.time, p.name," +
+                " p.last_name FROM Appointment a, Person p " +
+                "WHERE a.doctor_id = p.id AND a.date = ' " + new Date(date.getTime()).toString() + " ' "; //'2016-04-20'
+
+        System.out.print(new Date(date.getTime()).toString());
+        ResultSet rss = db.execute_query(qu);
+        List<Appointment> appointments_list = new ArrayList<Appointment>();
+
+        try
+        {
+            if (rss != null)
+            {
+                while (rss.next())
+                {
+                    Appointment a = new Appointment();
+                    a.set_id(rss.getLong("id"));
+                    a.set_patient_id(rss.getLong("patient_id"));
+                    a.set_doctor_id(rss.getLong("doctor_id"));
+                    a.set_date(rss.getDate("date"));
+                    a.set_time(rss.getTime("time"));
+                    a.set_description(rss.getString("description"));
+                    a.set_type(Appointment_type.valueOf(rss.getString("type")));
+
+                    appointments_list.add(a);
+                }
+                ObservableList<Appointment> observable_appointment_list = FXCollections.observableArrayList(appointments_list);
+                this.next_appointment_list_view.getItems().clear();
+                this.next_appointment_list_view.setItems(observable_appointment_list);
+                this.next_appointment_list_view.getSelectionModel().selectFirst();
+
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     public Long get_user_id()
