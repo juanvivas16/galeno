@@ -90,10 +90,13 @@ public class Reception_controller
         {
             String id = id_text_field.getText();
 
-            this.person = db.get_person_by_id(id);
+            Person tmp_person = db.get_person_by_id(id);
+            //this.person = db.get_person_by_id(id);
+
             //patient exist
-            if (person != null)
+            if (tmp_person != null)
             {
+                this.person = tmp_person;
                 this.name_text_field.setText(person.get_name());
                 this.last_name_text_field.setText(person.get_last_name());
                 this.direction_text_field.setText(person.get_direction());
