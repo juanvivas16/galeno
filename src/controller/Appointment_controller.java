@@ -36,6 +36,7 @@ public class Appointment_controller implements Initializable
     @FXML private ComboBox type_combo_box;
     @FXML private DatePicker date_date_picker;
     @FXML private TextField time_text_field;
+    @FXML private Button insert_edit_button;
     @FXML private TextArea description_text_area;
     @FXML private ListView appointment_list_view;
     @FXML private Pane pane;
@@ -44,6 +45,8 @@ public class Appointment_controller implements Initializable
     private Db_connection db = new Db_connection();
 
     private boolean edit_mode = false;
+
+    private Long appointment_id;
 
 
     @Override
@@ -156,7 +159,13 @@ public class Appointment_controller implements Initializable
             this.patient_id = ap.get_patient_id();
             //this.user_id = ap.get_user_id();
 
+            this.appointment_id = ap.get_id();
+
+
             this.edit_mode = true;
+
+            this.insert_edit_button.setText("Guardar");
+
 
         }
     }
@@ -164,12 +173,30 @@ public class Appointment_controller implements Initializable
 
     @FXML protected void handle_remove_appointment_button_action(ActionEvent event)
     {
+        if (! this.appointment_list_view.getItems().isEmpty())
+        {
+            Appointment ap = (Appointment) this.appointment_list_view.getSelectionModel().getSelectedItem();
+            this.delete_appointment_in_db(ap);
+
+            this.status_label.setText("¡Cita eliminada con éxito!");
+
+            //update list view from db
+            this.populate_appointment_list_view();
+
+            this.edit_mode = false;
+
+            this.insert_edit_button.setText("Insertar");
+
+
+        }
+
 
     }
 
     @FXML protected void handle_add_appointment_button_action(ActionEvent event) throws IOException, SQLException
     {
         Appointment appointment = new Appointment();
+        appointment.set_id(this.appointment_id);
         appointment.set_user_id(this.get_user_id());
         appointment.set_patient_id(this.get_patient_id());
 
@@ -207,7 +234,7 @@ public class Appointment_controller implements Initializable
         if (! this.edit_mode)
         {
             //insert into the DB
-            if (this.insert_appointment_in_db(appointment) != 0)
+            if (this.insert_appointment_in_db(appointment) >= 0)
             {
                 this.status_label.setText("¡Cita Agregada con éxito!");
 
@@ -227,15 +254,54 @@ public class Appointment_controller implements Initializable
         }
         else
         {
-            //todo update appointment data in db
+            // update appointment data in db
+            if (this.update_appointment_in_db(appointment) >= 0)
+            {
+                this.status_label.setText("¡Editado con éxito!");
+                //indicate edit mode finished if successful
+                this.edit_mode = false;
+
+                //update list view
+                //this.populate_appointment_list_view();
+
+
+                //go back to reception of the same patient DONE!
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/reception_ui.fxml"));
+
+                Parent root = (Parent) fxmlLoader.load();
+                Reception_controller controller = fxmlLoader.<Reception_controller>getController();
+                controller.set_user_id(this.user_id);
+                controller.id_text_field.setText(this.patient_id.toString());
+                controller.handle_search_button_action(new ActionEvent());
+                pane.getChildren().setAll(root);
+
+
+            }
 
         }
     }
 
 
+    private int update_appointment_in_db(Appointment a)
+    {
+        String query = "UPDATE Appointment SET " +
+                "  user_id='" + a.get_user_id() + "'" +
+                ", doctor_id='" + a.get_doctor_id() + "'" +
+                ", date = '" + a.get_date() + "'" +
+                ", time = '" + a.get_time() + "'" +
+                ", description = '" + a.get_description() + "'" +
+                ", type = '" + a.get_type() + "'" +
+                "WHERE Appointment.id=" + a.get_id();
+         return db.execute_update(query);
+    }
+
+
+
     private int insert_appointment_in_db(Appointment a)
     {
-        String query = "INSERT INTO Appointment VALUES (" + a.get_id() + "" +
+        String query = "INSERT INTO Appointment (id, patient_id, user_id, doctor_id, date, time, description, type) " +
+                "VALUES (" + a.get_id() + "" +
                 ", '" + a.get_patient_id() + "'" +
                 ", '" + a.get_user_id() + "'" +
                 ", '" + a.get_doctor_id() + "'" +
@@ -244,6 +310,15 @@ public class Appointment_controller implements Initializable
                 ", '" + a.get_description() + "'" +
                 ", '" + a.get_type() + "'" +
                 ")";
+
+        return db.execute_update(query);
+    }
+
+
+
+    private int delete_appointment_in_db(Appointment a)
+    {
+        String query = "DELETE FROM Appointment WHERE id = "+ a.get_id();
 
         return db.execute_update(query);
     }

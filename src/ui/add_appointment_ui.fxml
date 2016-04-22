@@ -38,7 +38,7 @@
       <Label layoutX="98.0" layoutY="311.0" text="Tipo:" />
       <ComboBox fx:id="type_combo_box" layoutX="176.0" layoutY="306.0" prefWidth="150.0" />
       <TextArea fx:id="description_text_area" layoutX="176.0" layoutY="345.0" prefHeight="80.0" prefWidth="222.0" />
-      <Button layoutX="255.0" layoutY="469.0" mnemonicParsing="false" onAction="#handle_add_appointment_button_action" text="Aceptar" />
+      <Button fx:id="insert_edit_button" layoutX="255.0" layoutY="469.0" mnemonicParsing="false" onAction="#handle_add_appointment_button_action" text="Insertar" />
       <Button cancelButton="true" layoutX="169.0" layoutY="469.0" mnemonicParsing="false" onAction="#handle_cancel_button_action" text="Cancelar" />
       <ListView fx:id="appointment_list_view" layoutX="443.0" layoutY="184.0" prefHeight="243.0" prefWidth="169.0" />
       <Separator layoutX="423.0" layoutY="182.0" orientation="VERTICAL" prefHeight="285.0" prefWidth="4.0" />

@@ -21,9 +21,11 @@ public class Appointment
     private Time _time;
     private String _description;
     private Appointment_type _type;
+    private int _done = 0;
+    //private int _paid = 0;
 
 
-    public Appointment(Long _id, Long _patient_id, Long _user_id, Long _doctor_id, Date _date, Time _time, String _description, Appointment_type _type)
+    public Appointment(Long _id, Long _patient_id, Long _user_id, Long _doctor_id, Date _date, Time _time, String _description, Appointment_type _type, int done)
     {
         this._id = _id;
         this._patient_id = _patient_id;
@@ -34,6 +36,8 @@ public class Appointment
         this._time = _time;
         this._description = _description;
         this._type = _type;
+        this._done = done;
+        //this._paid = paid;
     }
 
 
@@ -120,6 +124,17 @@ public class Appointment
     public void set_type(Appointment_type _type)
     {
         this._type = _type;
+    }
+
+
+    public int get_done()
+    {
+        return _done;
+    }
+
+    public void set_done(int _done)
+    {
+        this._done = _done;
     }
 
     @Override public String toString()

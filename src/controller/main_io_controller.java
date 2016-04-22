@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -10,13 +11,17 @@ import db_helper.Db_connection;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.print.Doc;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
-public class main_io_controller {
+public class main_io_controller implements Initializable
+{
     @FXML private TextField user_text_field;
     @FXML private TextField pass_text_field;
     @FXML private Db_connection db = new Db_connection();
@@ -26,6 +31,14 @@ public class main_io_controller {
 
     @FXML private Pane pane;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        // todo temp setting to expedite login process.
+        this.user_text_field.setText("jose");
+        this.pass_text_field.setText("1234");
+    }
 
 
     @FXML
@@ -100,8 +113,9 @@ public class main_io_controller {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/doctor_ui.fxml"));
 
                             Parent root = (Parent)fxmlLoader.load();
-                            Reception_controller controller = fxmlLoader.<Reception_controller>getController();
+                            Doctor_controller controller = fxmlLoader.<Doctor_controller>getController();
                             controller.set_user_id(user_id);
+                            controller.initialize(null, null);
 
                             pane.getChildren().setAll(root);
                         } catch (IOException e) {
@@ -118,4 +132,6 @@ public class main_io_controller {
         //user_text_field.getText()
         //pass_text_field.getText()
     }
+
+
 }

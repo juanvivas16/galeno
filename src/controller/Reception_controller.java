@@ -40,12 +40,13 @@ public class Reception_controller implements Initializable
     @FXML private TextField gender_text_field;
     @FXML private DatePicker birth_date_date_picker;
     @FXML private Button new_appointment_button;
-    @FXML private Button edit_appointment_button;
+    @FXML private Button process_appointment_button;
     @FXML private Button add_queue_button;
     @FXML private Button edit_patient_data_button;
     @FXML private Button save_patient_data_button;
-    @FXML private Button add_payment_button;
+    @FXML private Button add_invoice_button;
     @FXML private Button new_patient_data_button;
+    @FXML private Button cancel_button;
     @FXML private Label status_label;
     @FXML private ListView next_appointment_list_view;
 
@@ -134,6 +135,18 @@ public class Reception_controller implements Initializable
 
     }
 
+    @FXML protected  void handle_cancel_button_action(ActionEvent event) throws SQLException
+    {
+        //this.handle_search_button_action(null);
+        this.name_text_field.setDisable(true);
+        this.last_name_text_field.setDisable(true);
+        this.direction_text_field.setDisable(true);
+        this.telephone_text_field.setDisable(true);
+        this.gender_text_field.setDisable(true);
+        this.birth_date_date_picker.setDisable(true);
+
+        this.save_patient_data_button.setDisable(true);
+    }
 
 
     @FXML protected void handle_search_button_action(ActionEvent event) throws SQLException
@@ -207,7 +220,7 @@ public class Reception_controller implements Initializable
 
     }
 
-    @FXML protected  void handle_edit_appointment_button_action (ActionEvent event)
+    @FXML protected  void handle_process_appointment_button_action (ActionEvent event)
     {
 
 
@@ -232,7 +245,7 @@ public class Reception_controller implements Initializable
 
     }
 
-    @FXML protected  void handle_add_payment_button_action (ActionEvent event)
+    @FXML protected  void handle_add_invoice_button_action (ActionEvent event)
     {
 
 

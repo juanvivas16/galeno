@@ -3,7 +3,11 @@ Primaria
 ->Ventana administrador, agregar a main_io_controller
 -> Citas proximas en recepcion_ui
 -> Cambiar en la clase cita: marcador_cita por descripcion; eliminar  num_contacto; agregar: id_medico
-
+-> agregar los campos "lista" a la clase cita, tipo entero
+-> modificar tabla Historial, queda como sigue: id, id_consulta, id_pacinte, id_medico (usuario), fecha (visita), descripcion
+-> eliminar items_historial
+-> agregar el campo "pagada" y "terminad" a la consulta
+-> agregar clave foranea "id_consulta" de la tabla Historia hacia la tabla Consulta
 
 Secundaria
 

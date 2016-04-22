@@ -73,3 +73,14 @@ CHANGE `doctor_id` `doctor_id` bigint(20) unsigned NOT NULL AFTER `user_id`;
 
 ALTER TABLE `Appointment`
 ADD FOREIGN KEY (`doctor_id`) REFERENCES `Person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
+
+-- 21 /04 / 2016
+
+ALTER TABLE `Appointment`
+ADD `done` int NOT NULL DEFAULT '0',
+ADD `paid` int NOT NULL DEFAULT '0' AFTER `done`;
+
+ALTER TABLE `Appointment`
+DROP `paid`;
+
