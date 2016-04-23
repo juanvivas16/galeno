@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Test_controller">
+   <children>
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="29.0" prefWidth="628.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Archivo">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Acerca" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label layoutX="29.0" layoutY="346.0" prefHeight="45.0" prefWidth="59.0" text="Examen:" />
+      <ListView fx:id="test_list_view" layoutX="96.0" layoutY="143.0" prefHeight="178.0" prefWidth="414.0" />
+      <Button defaultButton="true" layoutX="443.0" layoutY="332.0" mnemonicParsing="false" onAction="#handle_add_test_button_action" prefHeight="75.0" prefWidth="67.0" text="Agregar" />
+      <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
+      <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
+      <TextArea fx:id="test_text_area" layoutX="96.0" layoutY="332.0" prefHeight="75.0" prefWidth="329.0" />
+      <Button layoutX="445.0" layoutY="461.0" mnemonicParsing="false" onAction="#handle_done_button_action" prefHeight="29.0" prefWidth="67.0" text="Finalizar" />
+   </children>
+</Pane>

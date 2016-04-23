@@ -9,12 +9,23 @@ public class Test_item
     private Long _test_id;
     private String _description;
 
+    public Test_item()
+    {
+        this._id = new Long(0);
+    }
+
     public Test_item(Long _id, Long _test_id, String _description)
     {
         this._id = _id;
         this._test_id = _test_id;
         this._description = _description;
     }
+
+    @Override public String toString()
+    {
+        return this._description;
+    }
+
 
     public Long get_id()
     {

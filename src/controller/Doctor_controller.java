@@ -47,6 +47,7 @@ public class Doctor_controller implements Initializable
     private Long user_id = new Long(0);
     private Long patient_id = new Long(0);
     private Long consultaion_id = new Long(0);
+    private Long appointment_id;
 
 
 
@@ -185,13 +186,32 @@ public class Doctor_controller implements Initializable
         {
             Appointment ap = (Appointment) this.next_appointment_list_view.getSelectionModel().getSelectedItem();
             this.patient_id = ap.get_patient_id();
+            this.appointment_id = ap.get_id();
+
+            String query = "SELECT id FROM Consultation WHERE appointment_id = '" +
+                    ap.get_id().toString() + "' ";
+            ResultSet rs = db.execute_query(query);
 
 
+            //value exist
+            if (rs.next())
+            {
+                this.consultaion_id = rs.getLong("id");
+            }
+            else
+            {
+                //insert a new test in db, and retrieve the autoincrement Test ID
+                int ret = this.insert_consultation_in_db();
+                if (ret != -1)
+                    this.consultaion_id = new Long(ret);
+            }
+
+/*
             //insert new consultation row, and send its generated id to consultation ui controller
             int res = this.insert_consultation_in_db();
             if (res != -1)
                 this.consultaion_id = new Long(res);
-
+*/
 
             // initiate consultation ui and send patient and user (medic) id
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/consultation_ui.fxml"));
@@ -215,9 +235,10 @@ public class Doctor_controller implements Initializable
     {
 
         //get the last generated consultation ID, to send later to Consultation ui controller
-        String query = "INSERT INTO Consultation ( user_id, patient_id) " +
+        String query = "INSERT INTO Consultation ( user_id, patient_id, appointment_id) " +
                 "VALUES (" + this.user_id + "" +
                 ", '" + this.patient_id + "'" +
+                ", '" + this.appointment_id + "'" +
                 ")";
 
         java.sql.PreparedStatement prstat;

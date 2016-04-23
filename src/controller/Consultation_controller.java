@@ -1,5 +1,6 @@
 package controller;
 
+import com.mysql.jdbc.Statement;
 import data_model.Appointment;
 import data_model.Appointment_type;
 import data_model.Record;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +42,8 @@ public class Consultation_controller implements Initializable
     private Long patient_id;
     private Long consultation_id;
     private Long appointment_id;
+    private Long test_id;
+    private Long prescription_id;
 
 
     @FXML private Db_connection db = new Db_connection();
@@ -94,6 +98,9 @@ public class Consultation_controller implements Initializable
 
     @FXML protected void handle_add_record_button_action(ActionEvent event)
     {
+        if (this.record_text_area.getText().isEmpty())
+            return;
+
         Record record = new Record();
         record.set_patient_id(this.patient_id);
         record.set_user_id(this.user_id);
@@ -114,16 +121,93 @@ public class Consultation_controller implements Initializable
         this.record_text_area.clear();
     }
 
-    @FXML protected void handle_test_button_action(ActionEvent event)
+    @FXML protected void handle_test_button_action(ActionEvent event) throws SQLException, IOException
     {
-        //todo go to test (exam) ui controller and pass consultation_id
+        //go to test (exam) ui controller and pass consultation_id and new generated test_id
+        //verify if there are no test with the consultation_id, then insert new test, else show it
+
+
+        String query = "SELECT id, consultation_id FROM Test WHERE consultation_id = '" +
+                        this.consultation_id.toString() + "' ";
+        ResultSet rs = db.execute_query(query);
+        //value exist
+        if (rs.next())
+        {
+            this.test_id = rs.getLong("id");
+        }
+        else
+        {
+            //insert a new test in db, and retrieve the autoincrement Test ID
+            int ret = this.insert_test_in_db();
+            if (ret != -1)
+                this.test_id = new Long(ret);
+        }
+
+        //go to TEST UI
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/test_ui.fxml"));
+
+        Parent root = (Parent)fxmlLoader.load();
+        Test_controller controller = fxmlLoader.<Test_controller>getController();
+        controller.set_consultation_id(this.consultation_id);
+        controller.set_test_id(this.test_id);
+        controller.set_user_id(this.user_id);
+        controller.set_patient_id(this.patient_id);
+        controller.set_appointment_id(this.appointment_id);
+
+        controller.populate_test_list_view(null);
+
+        pane.getChildren().setAll(root);
+
 
     }
 
-    @FXML protected void handle_prescription_button_action(ActionEvent event)
+
+
+
+    @FXML protected void handle_prescription_button_action(ActionEvent event) throws SQLException, IOException
     {
         //todo go to prescription ui controller and pass consultation_id
+        //verify if there are no test with the prescription_id, then insert new prescription, else show it
+
+
+        String query = "SELECT id, consultation_id FROM Prescription WHERE consultation_id = '" +
+                this.consultation_id.toString() + "' ";
+        ResultSet rs = db.execute_query(query);
+        //value exist
+        if (rs.next())
+        {
+            this.prescription_id = rs.getLong("id");
+        }
+        else
+        {
+            //insert a new test in db, and retrieve the autoincrement Test ID
+            int ret = this.insert_prescription_item_in_db();
+            if (ret != -1)
+                this.prescription_id = new Long(ret);
+        }
+
+        //go to TEST UI
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/prescription_ui.fxml"));
+
+        Parent root = (Parent)fxmlLoader.load();
+        Prescription_controller controller = fxmlLoader.<Prescription_controller>getController();
+        controller.set_consultation_id(this.consultation_id);
+        controller.set_prescription_id(this.prescription_id);
+        controller.set_user_id(this.user_id);
+        controller.set_patient_id(this.patient_id);
+        controller.set_appointment_id(this.appointment_id);
+
+        controller.populate_test_list_view(null);
+
+        pane.getChildren().setAll(root);
+
+
     }
+
+
+
 
     @FXML protected void handle_done_button_action(ActionEvent event)
     {
@@ -151,6 +235,60 @@ public class Consultation_controller implements Initializable
 
 
     }
+
+    private int insert_test_in_db() throws SQLException
+    {
+
+        //get the last generated TEST ID (from autoincrement), to send later to Test ui controller
+        String query = "INSERT INTO Test ( consultation_id ) " +
+                "VALUES ( '" + this.consultation_id.toString() + "' )";
+
+        java.sql.PreparedStatement prstat;
+        Connection con = db.get_connection();
+        prstat = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+        int ret = prstat.executeUpdate();
+        ResultSet rs = prstat.getGeneratedKeys();
+
+        ret = -1;
+
+        if (rs.next())
+        {
+            ret = rs.getInt(1);
+        }
+
+        return ret;
+
+    }
+
+
+    private int insert_prescription_item_in_db() throws SQLException
+    {
+
+        //get the last generated TEST ID (from autoincrement), to send later to Test ui controller
+        String query = "INSERT INTO Prescription ( consultation_id ) " +
+                "VALUES ( '" + this.consultation_id.toString() + "' )";
+
+        java.sql.PreparedStatement prstat;
+        Connection con = db.get_connection();
+        prstat = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+        int ret = prstat.executeUpdate();
+        ResultSet rs = prstat.getGeneratedKeys();
+
+        ret = -1;
+
+        if (rs.next())
+        {
+            ret = rs.getInt(1);
+        }
+
+        return ret;
+
+    }
+
+
+
 
 
     public Long get_user_id()
@@ -192,5 +330,26 @@ public class Consultation_controller implements Initializable
     public void set_appointment_id(Long appointment_id)
     {
         this.appointment_id = appointment_id;
+    }
+
+
+    public Long get_test_id()
+    {
+        return test_id;
+    }
+
+    public void set_test_id(Long test_id)
+    {
+        this.test_id = test_id;
+    }
+
+    public Long get_prescription_id()
+    {
+        return prescription_id;
+    }
+
+    public void set_prescription_id(Long prescription_id)
+    {
+        this.prescription_id = prescription_id;
     }
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Invoice_controller">
+   <children>
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="29.0" prefWidth="628.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Archivo">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Acerca" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
+      <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
+      <Button layoutX="445.0" layoutY="461.0" mnemonicParsing="false" onAction="#handle_done_button_action" prefHeight="29.0" prefWidth="67.0" text="Facturar" />
+      <Label layoutX="149.0" layoutY="204.0" text="Descripcion:" />
+      <Label layoutX="174.0" layoutY="278.0" text="IVA:" />
+      <Label layoutX="159.0" layoutY="240.0" text="Subtotal:" />
+      <Label layoutX="169.0" layoutY="317.0" text="Total:" />
+      <TextField fx:id="description_text_field" layoutX="237.0" layoutY="199.0" />
+      <TextField fx:id="subtotoal_text_field" layoutX="237.0" layoutY="235.0" onKeyReleased="#handle_subtotal_key_relase_action" />
+      <TextField fx:id="iva_text_field" layoutX="237.0" layoutY="273.0" text="12" />
+      <TextField fx:id="total_text_field" disable="true" layoutX="237.0" layoutY="312.0" />
+   </children>
+</Pane>

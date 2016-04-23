@@ -58,6 +58,7 @@ public class Reception_controller implements Initializable
     private static Person person = new Person();
 
     private Long user_id;
+    private Long appointment_id;
 
     @FXML private Db_connection db = new Db_connection();
 
@@ -155,6 +156,10 @@ public class Reception_controller implements Initializable
         //search by id
         if (is_id)
         {
+
+            this.add_invoice_button.setDisable(true);
+
+
             String id = id_text_field.getText();
 
             Person tmp_person = db.get_person_by_id(id);
@@ -179,6 +184,15 @@ public class Reception_controller implements Initializable
                 this.new_appointment_button.setDisable(false);
 
 
+                //todo check if the patient has appointment with done state, the enable the invoice button
+                String query = "SELECT id FROM Appointment WHERE done = 1 AND patient_id = '" + id + "'";
+                ResultSet rs = db.execute_query(query);
+                if (rs.next())
+                {
+                    this.add_invoice_button.setDisable(false);
+                    this.appointment_id = rs.getLong("id");
+                }
+
             }
             else
             {
@@ -195,8 +209,6 @@ public class Reception_controller implements Initializable
                 this.edit_patient_data_button.setDisable(true);
 
                 this.new_appointment_button.setDisable(true);
-
-
 
             }
 
@@ -245,8 +257,23 @@ public class Reception_controller implements Initializable
 
     }
 
-    @FXML protected  void handle_add_invoice_button_action (ActionEvent event)
+    @FXML protected  void handle_add_invoice_button_action (ActionEvent event) throws IOException
     {
+        //todo go to invoice ui and send appointment id and patient_id
+
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/invoice_ui.fxml"));
+
+        Parent root = (Parent)fxmlLoader.load();
+        //access another controller to pass parameters and populate list view
+        Invoice_controller controller = fxmlLoader.<Invoice_controller>getController();
+        controller.set_patient_id(this.person.get_id());
+        controller.set_appointment_id(this.appointment_id);
+        controller.set_user_id(this.user_id);
+
+
+        pane.getChildren().setAll(root);
 
 
     }

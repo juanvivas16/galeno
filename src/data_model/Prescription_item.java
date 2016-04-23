@@ -6,18 +6,26 @@ package data_model;
 public class Prescription_item
 {
     private Long _id;
-    private String _name;
-    private Prescription_item_type _type;
-    private String _instruction;
+    private Long _prescription_id;
+    private String _description;
 
+    public Prescription_item()
+    {
+        this._id = new Long(0);
+    }
 
-    public Prescription_item(Long _id, String _name, Prescription_item_type _type, String _instruction)
+    public Prescription_item(Long _id, Long _prescription_id, String _description)
     {
         this._id = _id;
-        this._name = _name;
-        this._type = _type;
-        this._instruction = _instruction;
+        this._prescription_id = _prescription_id;
+        this._description = _description;
     }
+
+    @Override public String toString()
+    {
+        return this._description;
+    }
+
 
     public Long get_id()
     {
@@ -29,33 +37,23 @@ public class Prescription_item
         this._id = _id;
     }
 
-    public String get_name()
+    public Long get_prescription_id()
     {
-        return _name;
+        return _prescription_id;
     }
 
-    public void set_name(String _name)
+    public void set_prescription_id(Long _prescription_id)
     {
-        this._name = _name;
+        this._prescription_id = _prescription_id;
     }
 
-    public Prescription_item_type get_type()
+    public String get_description()
     {
-        return _type;
+        return _description;
     }
 
-    public void set_type(Prescription_item_type _type)
+    public void set_description(String _description)
     {
-        this._type = _type;
-    }
-
-    public String get_instruction()
-    {
-        return _instruction;
-    }
-
-    public void set_instruction(String _instruction)
-    {
-        this._instruction = _instruction;
+        this._description = _description;
     }
 }

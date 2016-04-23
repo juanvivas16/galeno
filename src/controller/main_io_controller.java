@@ -36,7 +36,8 @@ public class main_io_controller implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         // todo temp setting to expedite login process.
-        this.user_text_field.setText("jose");
+        //this.user_text_field.setText("jose");  //doctor
+        this.user_text_field.setText("nom");        //reception
         this.pass_text_field.setText("1234");
     }
 
