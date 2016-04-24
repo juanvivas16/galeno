@@ -20,8 +20,20 @@ Secundaria
 
 Pasar claves con hash
 Sacar la "consulta SQL" de main_io_controller afuera de la funcion handle_login_button_action
+Tabuladores en orden correcto
 
 
+Bugs ui:
+
+Recepcion
+Estado: se solapa con cancelar
+
+Citas:
+Boton editar no se lee completo
+Botones editar cancelar de diferente tamano
+
+Medico:
+Buscar tamano incorrecto
 
 
 

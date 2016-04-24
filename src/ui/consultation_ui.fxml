@@ -28,12 +28,12 @@
       </MenuBar>
       <Label layoutX="29.0" layoutY="346.0" prefHeight="45.0" prefWidth="59.0" text="Historia:" />
       <ListView fx:id="records_list_view" layoutX="96.0" layoutY="143.0" prefHeight="178.0" prefWidth="414.0" />
-      <Button defaultButton="true" layoutX="443.0" layoutY="332.0" mnemonicParsing="false" onAction="#handle_add_record_button_action" prefHeight="75.0" prefWidth="67.0" text="Agregar" />
+      <Button defaultButton="true" layoutX="433.0" layoutY="332.0" mnemonicParsing="false" onAction="#handle_add_record_button_action" prefHeight="75.0" prefWidth="77.0" text="Agregar" />
       <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
       <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
       <Button layoutX="98.0" layoutY="424.0" mnemonicParsing="false" onAction="#handle_test_button_action" prefHeight="63.0" prefWidth="84.0" text="Examen" />
       <TextArea fx:id="record_text_area" layoutX="96.0" layoutY="332.0" prefHeight="75.0" prefWidth="329.0" />
       <Button layoutX="216.0" layoutY="424.0" mnemonicParsing="false" onAction="#handle_prescription_button_action" prefHeight="63.0" prefWidth="84.0" text="Recipe" />
-      <Button layoutX="445.0" layoutY="461.0" mnemonicParsing="false" onAction="#handle_done_button_action" prefHeight="29.0" prefWidth="67.0" text="Finalizar" />
+      <Button layoutX="435.0" layoutY="461.0" mnemonicParsing="false" onAction="#handle_done_button_action" prefHeight="29.0" prefWidth="77.0" text="Finalizar" />
    </children>
 </Pane>
