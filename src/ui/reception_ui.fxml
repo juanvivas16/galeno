@@ -47,12 +47,12 @@
       <DatePicker fx:id="birth_date_date_picker" disable="true" layoutX="129.0" layoutY="408.0" prefHeight="29.0" prefWidth="163.0" />
       <TextField fx:id="telephone_text_field" disable="true" layoutX="127.0" layoutY="325.0" prefHeight="29.0" prefWidth="163.0" />
       <Label layoutX="89.0" layoutY="374.0" text="Sexo:" />
-      <TextField fx:id="gender_text_field" disable="true" layoutX="127.0" layoutY="367.0" prefHeight="29.0" prefWidth="163.0" />
       <Button fx:id="add_invoice_button" disable="true" layoutX="321.0" layoutY="363.0" mnemonicParsing="false" onAction="#handle_add_invoice_button_action" prefHeight="56.0" prefWidth="80.0" text="Facturar" />
       <Button fx:id="save_patient_data_button" disable="true" layoutX="329.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_save_patient_data_button_action" text="Guardar" />
       <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
       <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
       <Button fx:id="new_patient_data_button" disable="true" layoutX="199.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_new_patient_button_action" text="Nuevo Pacietne" />
       <Button fx:id="cancel_button" cancelButton="true" layoutX="327.0" layoutY="501.0" mnemonicParsing="false" onAction="#handle_cancel_button_action" text="Cancelar" />
+      <ComboBox fx:id="gender_combo_box" layoutX="129.0" layoutY="369.0" prefHeight="25.0" prefWidth="163.0" />
    </children>
 </Pane>

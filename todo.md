@@ -1,4 +1,5 @@
 Primaria
+
 -> ADMINISTRADOR poder de editar todas las tablas
 -> VALIDACION DE TODAS LAS ENTRADAS DESDE LA INTERFAZ
 
@@ -10,8 +11,6 @@ Primaria
 -> eliminar items_historial
 -> agregar el campo "pagada" y "terminad" a la consulta
 -> agregar clave foranea "id_consulta" de la tabla Historia hacia la tabla Consulta
-
-
 -> modificar el diagrama de clase segun el nuevo modelo de la base de datos (simplificadas las partes de recipe y examen)
 
 
@@ -20,22 +19,7 @@ Secundaria
 
 Pasar claves con hash
 Sacar la "consulta SQL" de main_io_controller afuera de la funcion handle_login_button_action
-Tabuladores en orden correcto
-
-
-Bugs ui:
-
-Recepcion
-Estado: se solapa con cancelar
-
-Citas:
-Boton editar no se lee completo
-Botones editar cancelar de diferente tamano
-
-Medico:
-Buscar tamano incorrecto
-
-
+Tabuladores en orden correcto ( es decir que si estoy por ejm escribiendo nombre, al darle tab pasa a apellido y asi al campo siguiente)
 
 
 Listos

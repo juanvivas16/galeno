@@ -37,7 +37,7 @@ public class Reception_controller implements Initializable
     @FXML private TextField last_name_text_field;
     @FXML private TextField direction_text_field;
     @FXML private TextField telephone_text_field;
-    @FXML private TextField gender_text_field;
+  //  @FXML private TextField gender_text_field;
     @FXML private DatePicker birth_date_date_picker;
     @FXML private Button new_appointment_button;
     @FXML private Button process_appointment_button;
@@ -49,6 +49,7 @@ public class Reception_controller implements Initializable
     @FXML private Button cancel_button;
     @FXML private Label status_label;
     @FXML private ListView next_appointment_list_view;
+    @FXML private ComboBox gender_combo_box;
 
     @FXML private Pane pane;
 
@@ -105,6 +106,18 @@ public class Reception_controller implements Initializable
         {
             e.printStackTrace();
         }
+
+
+        //populate gender combo box
+        ObservableList<String> type_list =
+                FXCollections.observableArrayList(
+                        "Masculino",
+                        "Femenino"
+                );
+
+        this.gender_combo_box.getItems().clear();
+        this.gender_combo_box.setItems(type_list);
+       // this.gender_combo_box.getSelectionModel().selectFirst();
     }
 
 
@@ -143,8 +156,9 @@ public class Reception_controller implements Initializable
         this.last_name_text_field.setDisable(true);
         this.direction_text_field.setDisable(true);
         this.telephone_text_field.setDisable(true);
-        this.gender_text_field.setDisable(true);
+       // this.gender_text_field.setDisable(true);
         this.birth_date_date_picker.setDisable(true);
+        this.gender_combo_box.setDisable(true);
 
         this.save_patient_data_button.setDisable(true);
     }
@@ -172,7 +186,17 @@ public class Reception_controller implements Initializable
                 this.name_text_field.setText(person.get_name());
                 this.last_name_text_field.setText(person.get_last_name());
                 this.direction_text_field.setText(person.get_direction());
-                this.gender_text_field.setText(person.get_gender());
+               // this.gender_text_field.setText(person.get_gender());
+
+
+                String temp1_gender = person.get_gender();
+
+                if(temp1_gender.equals("M"))
+                    this.gender_combo_box.getSelectionModel().selectFirst();
+                else if (temp1_gender.equals("F"))
+                    this.gender_combo_box.getSelectionModel().selectLast();
+
+
                 this.birth_date_date_picker.setValue(LocalDate.parse(person.get_birth_date().toString()));
                 this.telephone_text_field.setText(person.get_phone_num());
 
@@ -199,10 +223,11 @@ public class Reception_controller implements Initializable
                 this.name_text_field.clear();
                 this.last_name_text_field.clear();
                 this.direction_text_field.clear();
-                this.gender_text_field.clear();
+              //  this.gender_text_field.clear();
                 this.birth_date_date_picker.setValue(LocalDate.parse("2016-03-26"));
                 this.telephone_text_field.clear();
-                this.gender_text_field.clear();
+                this.gender_combo_box.getSelectionModel().clearSelection();
+
 
                 this.status_label.setText("Paciente no existe!");
                 this.new_patient_data_button.setDisable(false);
@@ -250,8 +275,9 @@ public class Reception_controller implements Initializable
         this.last_name_text_field.setDisable(false);
         this.direction_text_field.setDisable(false);
         this.telephone_text_field.setDisable(false);
-        this.gender_text_field.setDisable(false);
+       // this.gender_text_field.setDisable(false);
         this.birth_date_date_picker.setDisable(false);
+        this.gender_combo_box.setDisable(false);
 
         this.save_patient_data_button.setDisable(false);
 
@@ -286,8 +312,15 @@ public class Reception_controller implements Initializable
         this.person.set_last_name(last_name_text_field.getText());
         this.person.set_direction(direction_text_field.getText());
         this.person.set_phone_num(telephone_text_field.getText());
-        this.person.set_gender(gender_text_field.getText());
+     //   this.person.set_gender(gender_text_field.getText());
         this.person.set_birth_date(Date.valueOf(birth_date_date_picker.getValue()));
+
+        String temp_gender = this.gender_combo_box.getSelectionModel().getSelectedItem().toString();
+
+        if(temp_gender.equals("Masculino"))
+            this.person.set_gender("M");
+        else if (temp_gender.equals("Femenino"))
+            this.person.set_gender(("F"));
 
         if (this.is_new_patient)
         {
@@ -312,8 +345,9 @@ public class Reception_controller implements Initializable
             this.last_name_text_field.setDisable(true);
             this.direction_text_field.setDisable(true);
             this.telephone_text_field.setDisable(true);
-            this.gender_text_field.setDisable(true);
+           // this.gender_text_field.setDisable(true);
             this.birth_date_date_picker.setDisable(true);
+            this.gender_combo_box.setDisable(true);
 
             this.save_patient_data_button.setDisable(true);
             this.new_patient_data_button.setDisable(true);
