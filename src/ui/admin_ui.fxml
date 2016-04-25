@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main_io_controller">
+   <children>
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="29.0" prefWidth="628.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Salir" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Acerca" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="249.0" layoutY="223.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Personal" />
+      <Button layoutX="249.0" layoutY="347.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Citas" />
+      <Button layoutX="249.0" layoutY="407.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Facturas" />
+      <Button layoutX="249.0" layoutY="284.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Historias" />
+      <Text layoutX="128.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de personal:" />
+      <Text layoutX="120.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de pacientes:" />
+      <Text layoutX="153.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de citas:" />
+      <Text layoutX="129.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de facturas:" />
+      <Button layoutX="427.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Salir" />
+   </children>
+</Pane>

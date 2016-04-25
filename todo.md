@@ -12,6 +12,10 @@ Primaria
 -> agregar el campo "pagada" y "terminad" a la consulta
 -> agregar clave foranea "id_consulta" de la tabla Historia hacia la tabla Consulta
 -> modificar el diagrama de clase segun el nuevo modelo de la base de datos (simplificadas las partes de recipe y examen)
+-> idea modelo factura:
+    -tener el nombre del item que se va a facturar y costo asociado.
+    -en el ui tener una lista por si se va a cobrar mas de una cosa en la misma facturar.
+    -cobrar la lista completa.
 
 
 
@@ -20,7 +24,7 @@ Secundaria
 Pasar claves con hash
 Sacar la "consulta SQL" de main_io_controller afuera de la funcion handle_login_button_action
 Tabuladores en orden correcto ( es decir que si estoy por ejm escribiendo nombre, al darle tab pasa a apellido y asi al campo siguiente)
-
+Deshabilitar combobox de genero al abrir interfaz de recepcion
 
 Listos
 

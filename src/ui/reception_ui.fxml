@@ -33,9 +33,8 @@
       <ListView fx:id="next_appointment_list_view" layoutX="445.0" layoutY="180.0" prefHeight="281.0" prefWidth="169.0" />
       <Button defaultButton="true" layoutX="322.0" layoutY="171.0" mnemonicParsing="false" onAction="#handle_search_button_action" prefHeight="62.0" prefWidth="71.0" text="Buscar" />
       <Label layoutX="464.0" layoutY="156.0" text="Citas Proximas:" />
-      <Button fx:id="new_appointment_button" disable="true" layoutX="321.0" layoutY="244.0" mnemonicParsing="false" onAction="#handle_new_appointment_button_action" prefHeight="56.0" prefWidth="71.0" text="Citas" />
+      <Button fx:id="new_appointment_button" disable="true" layoutX="321.0" layoutY="244.0" mnemonicParsing="false" onAction="#handle_new_appointment_button_action" prefHeight="62.0" prefWidth="71.0" text="Citas" />
       <Button fx:id="process_appointment_button" disable="true" layoutX="445.0" layoutY="468.0" mnemonicParsing="false" onAction="#handle_process_appointment_button_action" text="Procesar Cita" />
-      <Button fx:id="add_queue_button" disable="true" layoutX="298.0" layoutY="325.0" mnemonicParsing="false" onAction="#handle_add_queue_button_action" text="Agregar en Cola" />
       <Button fx:id="edit_patient_data_button" disable="true" layoutX="33.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_edit_patient_data_button_action" text="Editar Datos Paciente" />
       <Separator layoutX="420.0" layoutY="180.0" orientation="VERTICAL" prefHeight="318.0" prefWidth="2.0" />
       <Label layoutX="61.0" layoutY="251.0" text="Apellidos:" />
@@ -47,7 +46,7 @@
       <DatePicker fx:id="birth_date_date_picker" disable="true" layoutX="129.0" layoutY="408.0" prefHeight="29.0" prefWidth="163.0" />
       <TextField fx:id="telephone_text_field" disable="true" layoutX="127.0" layoutY="325.0" prefHeight="29.0" prefWidth="163.0" />
       <Label layoutX="89.0" layoutY="374.0" text="Sexo:" />
-      <Button fx:id="add_invoice_button" disable="true" layoutX="321.0" layoutY="363.0" mnemonicParsing="false" onAction="#handle_add_invoice_button_action" prefHeight="56.0" prefWidth="80.0" text="Facturar" />
+      <Button fx:id="add_invoice_button" disable="true" layoutX="321.0" layoutY="319.0" mnemonicParsing="false" onAction="#handle_add_invoice_button_action" prefHeight="56.0" prefWidth="75.0" text="Facturar" />
       <Button fx:id="save_patient_data_button" disable="true" layoutX="329.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_save_patient_data_button_action" text="Guardar" />
       <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
       <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
