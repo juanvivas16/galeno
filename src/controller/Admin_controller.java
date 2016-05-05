@@ -80,26 +80,26 @@ public class Admin_controller implements Initializable
     }
 
 
-
-
-    public void buildPersonData(){
-
+    public void buildPersonData()
+    {
         person_data = FXCollections.observableArrayList();
+
         try{
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Person";
-            //ResultSet
-            ResultSet rs = db.execute_query(SQL);
+            String qu_p = "SELECT * from Person";
+            ResultSet rs = db.execute_query(qu_p);
 
             /**********************************
              * TABLE COLUMN ADDED DYNAMICALLY *
              **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++)
+            {
                 //We are using non property style for making dynamic table
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
+                    {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -111,44 +111,50 @@ public class Admin_controller implements Initializable
             /********************************
              * Data added to ObservableList *
              ********************************/
-            while(rs.next()){
+            while(rs.next())
+            {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+
+                for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
+
                 System.out.println("Row [1] added "+row );
                 person_data.add(row);
-
             }
 
             //FINALLY ADDED TO TableView
             person_table.setItems(person_data);
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
     }
 
-    public void buildAppointmentData(){
-
+    public void buildAppointmentData()
+    {
         appointment_data = FXCollections.observableArrayList();
+
         try{
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Appointment";
-            //ResultSet
-            ResultSet rs = db.execute_query(SQL);
+            String qu_a = "SELECT * from Appointment";
+            ResultSet rs = db.execute_query(qu_a);
 
             /**********************************
              * TABLE COLUMN ADDED DYNAMICALLY *
              **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++)
+            {
                 //We are using non property style for making dynamic table
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
+                    {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -160,44 +166,50 @@ public class Admin_controller implements Initializable
             /********************************
              * Data added to ObservableList *
              ********************************/
-            while(rs.next()){
+            while(rs.next())
+            {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+
+                for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
+
                 System.out.println("Row [1] added "+row );
                 appointment_data.add(row);
-
             }
 
             //FINALLY ADDED TO TableView
             appointment_table.setItems(appointment_data);
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
     }
 
-    public void buildInvoiceData(){
-
+    public void buildInvoiceData()
+    {
         invoice_data = FXCollections.observableArrayList();
+
         try{
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Invoice";
-            //ResultSet
-            ResultSet rs = db.execute_query(SQL);
+            String qu_i = "SELECT * from Invoice";
+            ResultSet rs = db.execute_query(qu_i);
 
             /**********************************
              * TABLE COLUMN ADDED DYNAMICALLY *
              **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++)
+            {
                 //We are using non property style for making dynamic table
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
+                    {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -209,44 +221,50 @@ public class Admin_controller implements Initializable
             /********************************
              * Data added to ObservableList *
              ********************************/
-            while(rs.next()){
+            while(rs.next())
+            {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+
+                for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
+
                 System.out.println("Row [1] added "+row );
                 invoice_data.add(row);
-
             }
 
             //FINALLY ADDED TO TableView
             invoice_table.setItems(invoice_data);
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
     }
 
-    public void buildPrescriptionData(){
-
+    public void buildPrescriptionData()
+    {
         prescription_data = FXCollections.observableArrayList();
+
         try{
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Prescription";
-            //ResultSet
-            ResultSet rs = db.execute_query(SQL);
+            String qu_pr = "SELECT * from Prescription";
+            ResultSet rs = db.execute_query(qu_pr);
 
             /**********************************
              * TABLE COLUMN ADDED DYNAMICALLY *
              **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++)
+            {
                 //We are using non property style for making dynamic table
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
+                    {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -258,44 +276,50 @@ public class Admin_controller implements Initializable
             /********************************
              * Data added to ObservableList *
              ********************************/
-            while(rs.next()){
+            while(rs.next())
+            {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+
+                for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
+
                 System.out.println("Row [1] added "+row );
                 prescription_data.add(row);
-
             }
 
             //FINALLY ADDED TO TableView
             prescription_table.setItems(prescription_data);
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
     }
 
-    public void buildConsultationData(){
-
+    public void buildConsultationData()
+    {
         consultation_data = FXCollections.observableArrayList();
+
         try{
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Consultation";
-            //ResultSet
-            ResultSet rs = db.execute_query(SQL);
+            String qu_c = "SELECT * from Consultation";
+            ResultSet rs = db.execute_query(qu_c);
 
             /**********************************
              * TABLE COLUMN ADDED DYNAMICALLY *
              **********************************/
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++)
+            {
                 //We are using non property style for making dynamic table
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
+                    {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -307,20 +331,24 @@ public class Admin_controller implements Initializable
             /********************************
              * Data added to ObservableList *
              ********************************/
-            while(rs.next()){
+            while(rs.next())
+            {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+
+                for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
+
                 System.out.println("Row [1] added "+row );
                 consultation_data.add(row);
-
             }
 
             //FINALLY ADDED TO TableView
             consultation_table.setItems(consultation_data);
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
