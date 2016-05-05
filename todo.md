@@ -24,7 +24,6 @@ Secundaria
 Pasar claves con hash
 Sacar la "consulta SQL" de main_io_controller afuera de la funcion handle_login_button_action
 Tabuladores en orden correcto ( es decir que si estoy por ejm escribiendo nombre, al darle tab pasa a apellido y asi al campo siguiente)
-Deshabilitar combobox de genero al abrir interfaz de recepcion
 
 Listos
 

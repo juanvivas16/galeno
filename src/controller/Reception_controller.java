@@ -117,6 +117,7 @@ public class Reception_controller implements Initializable
 
         this.gender_combo_box.getItems().clear();
         this.gender_combo_box.setItems(type_list);
+        this.gender_combo_box.setDisable(true);
        // this.gender_combo_box.getSelectionModel().selectFirst();
     }
 

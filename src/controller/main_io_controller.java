@@ -5,19 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import db_helper.Db_connection;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class main_io_controller implements Initializable
@@ -37,7 +32,8 @@ public class main_io_controller implements Initializable
     {
         // todo temp setting to expedite login process.
         //this.user_text_field.setText("jose");  //doctor
-        this.user_text_field.setText("nom");        //reception
+        this.user_text_field.setText("adm");   //admin
+       // this.user_text_field.setText("nom");        //reception
         this.pass_text_field.setText("1234");
     }
 
@@ -119,6 +115,23 @@ public class main_io_controller implements Initializable
                             controller.initialize(null, null);
 
                             pane.getChildren().setAll(root);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if (rol == 3)
+                    {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/admin_ui.fxml"));
+
+                            Parent root = (Parent)fxmlLoader.load();
+                            Admin_controller controller = fxmlLoader.<Admin_controller>getController();
+                            controller.set_user_id(user_id);
+                            controller.initialize(null, null);
+
+                            pane.getChildren().setAll(root);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

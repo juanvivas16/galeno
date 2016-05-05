@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main_io_controller">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin_controller">
    <children>
-      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="93.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="173.0" fitWidth="414.0" layoutX="96.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/logo.png" />
          </image>
@@ -27,14 +27,54 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="249.0" layoutY="223.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Personal" />
-      <Button layoutX="249.0" layoutY="347.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Citas" />
-      <Button layoutX="249.0" layoutY="407.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Facturas" />
-      <Button layoutX="249.0" layoutY="284.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="103.0" text="Historias" />
-      <Text layoutX="128.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de personal:" />
-      <Text layoutX="120.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de pacientes:" />
-      <Text layoutX="153.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de citas:" />
-      <Text layoutX="129.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabla de facturas:" />
-      <Button layoutX="427.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Salir" />
+      <Button fx:id="exit_button" layoutX="549.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Salir" />
+      <TabPane layoutX="10.0" layoutY="148.0" prefHeight="318.0" prefWidth="604.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="person_tab" text="Personas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane layoutX="189.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
+                        <TableView fx:id="person_table" layoutX="4.0" layoutY="1.0" prefHeight="282.0" prefWidth="598.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="appointment_tab" text="Citas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="appointment_table" layoutX="5.0" layoutY="3.0" prefHeight="278.0" prefWidth="595.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="invoice_tab" text="Facturas">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="invoice_table" layoutX="8.0" layoutY="6.0" prefHeight="275.0" prefWidth="589.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="prescription_tab" text="Recipes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="prescription_table" layoutX="6.0" layoutY="2.0" prefHeight="280.0" prefWidth="593.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="consultation_tab" text="Consultas">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="consultation_table" layoutX="6.0" layoutY="6.0" prefHeight="276.0" prefWidth="592.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="edit_data_button" layoutX="14.0" layoutY="477.0" mnemonicParsing="false" text="Editar" />
+      <Button fx:id="delete_data_button" layoutX="88.0" layoutY="477.0" mnemonicParsing="false" text="Eliminar" />
    </children>
 </Pane>
