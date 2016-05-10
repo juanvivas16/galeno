@@ -128,7 +128,7 @@ public class main_io_controller implements Initializable
                             Parent root = (Parent)fxmlLoader.load();
                             Admin_controller controller = fxmlLoader.<Admin_controller>getController();
                             controller.set_user_id(user_id);
-                            controller.initialize(null, null);
+                            //controller.initialize(null, null);
 
                             pane.getChildren().setAll(root);
 

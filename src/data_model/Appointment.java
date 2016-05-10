@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by victory on 3/26/16.
  */
+
 public class Appointment
 {
     private Long _id;
@@ -53,7 +55,11 @@ public class Appointment
 
     public void set_id(Long _id)
     {
-        this._id = _id;
+        if(_id < new Long(0))
+            this._id = new Long(0);
+
+        else
+            this._id = _id;
     }
 
     public Long get_patient_id()
@@ -63,8 +69,12 @@ public class Appointment
 
     public void set_patient_id(Long _patient_id)
     {
-        this._patient_id = _patient_id;
+        if(_patient_id < new Long(0))
+            this._patient_id = new Long(0);
+        else
+            this._patient_id = _patient_id;
     }
+
 
     public Long get_user_id()
     {
@@ -73,7 +83,10 @@ public class Appointment
 
     public void set_user_id(Long _user_id)
     {
-        this._user_id = _user_id;
+        if(_user_id < new Long(0))
+            this._user_id = new Long(0);
+        else
+            this._user_id = _user_id;
     }
 
     public Long get_doctor_id()
@@ -83,7 +96,10 @@ public class Appointment
 
     public void set_doctor_id(Long _doctor_id)
     {
-        this._doctor_id = _doctor_id;
+        if(_doctor_id < new Long(0))
+            this._doctor_id = new Long(0);
+        else
+            this._doctor_id = _doctor_id;
     }
 
     public Date get_date()
@@ -93,7 +109,12 @@ public class Appointment
 
     public void set_date(Date _date)
     {
-        this._date = _date;
+        Date d = Date.valueOf(LocalDate.now());
+
+        if(d.after(_date))
+            this._date = d;
+        else
+            this._date = _date;
     }
 
     public Time get_time()
@@ -103,7 +124,10 @@ public class Appointment
 
     public void set_time(Time _time)
     {
-        this._time = _time;
+        if(_time.before(Time.valueOf("20:00:00")) && _time.after(Time.valueOf("08:00:00")))
+            this._time = _time;
+        else
+            this._time = Time.valueOf("08:00:00");
     }
 
     public String get_description()
