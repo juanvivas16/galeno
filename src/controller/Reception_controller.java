@@ -309,10 +309,27 @@ public class Reception_controller implements Initializable
     {
         //this.person = new Person();
         //this.person.set_id(Long.parseLong(id_text_field.getText()));
-        this.person.set_name(name_text_field.getText());
-        this.person.set_last_name(last_name_text_field.getText());
+
+
+        if(checkAlpha(name_text_field.getText()))
+            this.person.set_name(name_text_field.getText());
+        else
+            this.status_label.setText("¡Error en nombre!");
+
+        if(checkAlpha(last_name_text_field.getText()))
+            this.person.set_last_name(last_name_text_field.getText());
+        else
+            this.status_label.setText("¡Error en Apellido!");
+
+
         this.person.set_direction(direction_text_field.getText());
-        this.person.set_phone_num(telephone_text_field.getText());
+
+        if(checkNonAlpha(telephone_text_field.getText()))
+            this.person.set_phone_num(telephone_text_field.getText());
+        else
+            this.status_label.setText("¡Error en Telefono!");
+
+
      //   this.person.set_gender(gender_text_field.getText());
         this.person.set_birth_date(Date.valueOf(birth_date_date_picker.getValue()));
 
@@ -325,7 +342,9 @@ public class Reception_controller implements Initializable
 
         if (this.is_new_patient)
         {
-            this.person.set_id(Long.parseLong(id_text_field.getText()));
+            if(checkNonAlpha(id_text_field.getText()))
+                this.person.set_id(Long.parseLong(id_text_field.getText()));
+
             this.person.set_reg_date(new Date(new java.util.Date().getTime() ));
 
             String query = "INSERT INTO Person VALUES (" + person.get_id() + "" +
@@ -339,7 +358,10 @@ public class Reception_controller implements Initializable
                     ")";
 
             int a = db.execute_update(query);
-            this.status_label.setText("¡Pacietne gaurdado con éxito!");
+            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()))
+                this.status_label.setText("¡Pacietne gaurdado con éxito!");
+            else
+                this.status_label.setText("Error al guardar. Verificar campos");
 
             //disable camps
             this.name_text_field.setDisable(true);
@@ -368,9 +390,13 @@ public class Reception_controller implements Initializable
                     "WHERE Person.id=" + person.get_id();
             int a = db.execute_update(query);
 
-            this.person.set_id(Long.parseLong(id_text_field.getText()));
+            if(checkNonAlpha(id_text_field.getText()))
+                this.person.set_id(Long.parseLong(id_text_field.getText()));
 
-            this.status_label.setText("¡Editado con éxito!");
+            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()))
+                this.status_label.setText("¡Editado con éxito!");
+            else
+                this.status_label.setText("Error al editar. Verificar campos");
         }
     }
 
@@ -383,6 +409,42 @@ public class Reception_controller implements Initializable
         this.new_patient_data_button.setDisable(true);
         this.edit_patient_data_button.setDisable(true);
 
+    }
+
+    public static boolean isNumeric(String s)
+    {
+        for(int i = 0; i < s.length(); ++i) {
+            char caracter = s.charAt(i);
+
+            if(!Character.isDigit(caracter)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Usando expresiones regulaes
+
+    //que solo sean numeros
+    public static boolean checkNonAlpha(String str)
+    {
+        boolean respuesta = false;
+
+        if ((str).matches("([0-9]|\\-)+"))
+            respuesta = true;
+
+        return respuesta;
+    }
+
+    //que solo sean letras
+    public static boolean checkAlpha(String str)
+    {
+        boolean respuesta = false;
+
+        if ((str).matches("([a-z]|[A-Z]|\\s)+"))
+            respuesta = true;
+
+        return respuesta;
     }
 
 

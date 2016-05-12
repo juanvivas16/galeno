@@ -13,8 +13,8 @@ import java.time.LocalTime;
 /**
  * Created by juancho on 09/05/16.
  */
-public class AppointmentTest {
-
+public class AppointmentTest
+{
     Appointment app = new Appointment();
 
     @org.junit.Test

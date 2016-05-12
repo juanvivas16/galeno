@@ -203,7 +203,6 @@ public class Appointment_controller implements Initializable
         //get_medic_id  combo box
         appointment.set_doctor_id(this.doctor_combo_box.getSelectionModel().getSelectedItem().get_id());
 
-
         appointment.set_date(Date.valueOf(this.date_date_picker.getValue()));
         appointment.set_time(Time.valueOf(this.time_text_field.getText()));
         appointment.set_description(this.description_text_area.getText());
@@ -368,5 +367,23 @@ public class Appointment_controller implements Initializable
         this.doctor_id = doctor_id;
     }
 
+
+    public static boolean checkHour(Time tim)
+    {
+        if(tim.before(Time.valueOf("20:00:00")) && tim.after(Time.valueOf("08:00:00")))
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean checkDate(Date dat)
+    {
+        Date d = Date.valueOf(LocalDate.now());
+
+        if(d.after(dat))
+            return true;
+        else
+            return false;
+    }
 
 }

@@ -48,9 +48,12 @@ public class Person
         return _id;
     }
 
-    public void set_id(Long id)
+    public void set_id(Long _id)
     {
-        this._id = id;
+        if(_id < new Long(0))
+            this._id = new Long(0);
+        else
+            this._id = _id;
     }
 
     public String get_name()
@@ -58,14 +61,28 @@ public class Person
         return _name;
     }
 
-    public void set_name(String name)
+    public void set_name(String _name)
     {
-        this._name = name;
+        if(_name.isEmpty())
+            this._name = new String("empty");
+
+        else if(_name == null)
+            this._name = new String("null");
+
+        else
+            this._name = _name;
+
     }
 
     public String get_last_name() { return _last_name; }
 
-    public void set_last_name(String _last_name) { this._last_name = _last_name; }
+    public void set_last_name(String _last_name)
+    {
+        if(_last_name.isEmpty())
+            this._last_name = new String("empty");
+        else
+            this._last_name = _last_name;
+    }
 
 
     public String get_gender()
@@ -73,9 +90,12 @@ public class Person
         return _gender;
     }
 
-    public void set_gender(String gender)
+    public void set_gender(String _gender)
     {
-        this._gender = gender;
+        if(_gender.isEmpty())
+            this._gender = new String("M");
+        else
+            this._gender = _gender;
     }
 
     public Date get_birth_date()
@@ -83,9 +103,9 @@ public class Person
         return _birth_date;
     }
 
-    public void set_birth_date(Date birth_date)
+    public void set_birth_date(Date _birth_date)
     {
-        this._birth_date = birth_date;
+        this._birth_date = _birth_date;
     }
 
     public Date get_reg_date()
@@ -93,9 +113,9 @@ public class Person
         return _reg_date;
     }
 
-    public void set_reg_date(Date reg_date)
+    public void set_reg_date(Date _reg_date)
     {
-        this._reg_date = reg_date;
+        this._reg_date = _reg_date;
     }
 
     public String get_direction()
@@ -103,9 +123,12 @@ public class Person
         return _direction;
     }
 
-    public void set_direction(String direction)
+    public void set_direction(String _direction)
     {
-        this._direction = direction;
+        if(_direction.isEmpty())
+            this._direction = new String("empty");
+        else
+            this._direction = _direction;
     }
 
     public String get_phone_num()
@@ -113,9 +136,12 @@ public class Person
         return _phone_num;
     }
 
-    public void set_phone_num(String phone_num)
+    public void set_phone_num(String _phone_num)
     {
-        this._phone_num = phone_num;
+        if(_phone_num.isEmpty())
+            this._phone_num = new String("empty");
+        else
+            this._phone_num = _phone_num;
     }
 
     @Override

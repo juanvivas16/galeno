@@ -34,7 +34,7 @@
       <Button layoutX="98.0" layoutY="287.0" mnemonicParsing="false" text="Agregar Item" />
       <TextField layoutX="385.0" layoutY="202.0" prefHeight="29.0" prefWidth="35.0" text="1" />
       <Label layoutX="325.0" layoutY="208.0" text="Cantidad" />
-      <Label layoutX="98.0" layoutY="244.0" prefHeight="19.0" prefWidth="102.0" text="Instruccion item" />
+      <Label layoutX="98.0" layoutY="244.0" prefHeight="19.0" prefWidth="102.0" text="Instrucciones" />
       <TextArea layoutX="211.0" layoutY="242.0" prefHeight="77.0" prefWidth="211.0" />
       <Button layoutX="97.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Guardar recipe" />
       <Button layoutX="356.0" layoutY="351.0" mnemonicParsing="false" text="Cancelar" />
