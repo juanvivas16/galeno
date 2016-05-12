@@ -46,7 +46,7 @@ public class Appointment_controller implements Initializable
 
     private boolean edit_mode = false;
 
-    private Long appointment_id;
+    private Long appointment_id = new Long(0);
 
 
     @Override
