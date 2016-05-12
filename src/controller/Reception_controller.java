@@ -169,7 +169,11 @@ public class Reception_controller implements Initializable
     {
         //System.out.print("ID from prevoius: " + get_user_id().toString() );
         //search by id
-        if (is_id)
+
+        if(id_text_field.getText().isEmpty())
+            status_label.setText("ID invalido.");
+
+        else if (is_id)
         {
 
             this.add_invoice_button.setDisable(true);
@@ -187,7 +191,7 @@ public class Reception_controller implements Initializable
                 this.name_text_field.setText(person.get_name());
                 this.last_name_text_field.setText(person.get_last_name());
                 this.direction_text_field.setText(person.get_direction());
-               // this.gender_text_field.setText(person.get_gender());
+                // this.gender_text_field.setText(person.get_gender());
 
 
                 String temp1_gender = person.get_gender();
@@ -224,7 +228,7 @@ public class Reception_controller implements Initializable
                 this.name_text_field.clear();
                 this.last_name_text_field.clear();
                 this.direction_text_field.clear();
-              //  this.gender_text_field.clear();
+                //  this.gender_text_field.clear();
                 this.birth_date_date_picker.setValue(LocalDate.parse("2016-03-26"));
                 this.telephone_text_field.clear();
                 this.gender_combo_box.getSelectionModel().clearSelection();
@@ -237,8 +241,6 @@ public class Reception_controller implements Initializable
                 this.new_appointment_button.setDisable(true);
 
             }
-
-
         }
     }
 
@@ -342,7 +344,7 @@ public class Reception_controller implements Initializable
 
         if (this.is_new_patient)
         {
-            if(checkNonAlpha(id_text_field.getText()))
+            if(checkNonAlpha(id_text_field.getText()) && checkID(Long.parseLong(id_text_field.getText())))
                 this.person.set_id(Long.parseLong(id_text_field.getText()));
 
             this.person.set_reg_date(new Date(new java.util.Date().getTime() ));
@@ -358,7 +360,8 @@ public class Reception_controller implements Initializable
                     ")";
 
             int a = db.execute_update(query);
-            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()))
+
+            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()) && checkID(Long.parseLong(id_text_field.getText())))
                 this.status_label.setText("¡Pacietne gaurdado con éxito!");
             else
                 this.status_label.setText("Error al guardar. Verificar campos");
@@ -390,10 +393,10 @@ public class Reception_controller implements Initializable
                     "WHERE Person.id=" + person.get_id();
             int a = db.execute_update(query);
 
-            if(checkNonAlpha(id_text_field.getText()))
+            if(checkNonAlpha(id_text_field.getText()) && checkID(Long.parseLong(id_text_field.getText())))
                 this.person.set_id(Long.parseLong(id_text_field.getText()));
 
-            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()))
+            if(checkNonAlpha(telephone_text_field.getText()) && checkAlpha(name_text_field.getText()) && checkAlpha(last_name_text_field.getText()) && checkID(Long.parseLong(id_text_field.getText())))
                 this.status_label.setText("¡Editado con éxito!");
             else
                 this.status_label.setText("Error al editar. Verificar campos");
@@ -430,7 +433,7 @@ public class Reception_controller implements Initializable
     {
         boolean respuesta = false;
 
-        if ((str).matches("([0-9]|\\-)+"))
+        if (str.matches("([0-9]|\\-)+"))
             respuesta = true;
 
         return respuesta;
@@ -441,11 +444,18 @@ public class Reception_controller implements Initializable
     {
         boolean respuesta = false;
 
-        if ((str).matches("([a-z]|[A-Z]|\\s)+"))
+        if (str.matches("([a-z]|[A-Z]| | \\s)+"))
             respuesta = true;
 
         return respuesta;
     }
 
+    public static boolean checkID(Long id)
+    {
+        if( id < 500000 && id > 999999999 )
+            return false;
+        else
+            return true;
+    }
 
 }

@@ -1,6 +1,9 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,12 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import db_helper.Db_connection;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class main_io_controller implements Initializable
 {
@@ -113,6 +119,31 @@ public class main_io_controller implements Initializable
                             Doctor_controller controller = fxmlLoader.<Doctor_controller>getController();
                             controller.set_user_id(user_id);
                             controller.initialize(null, null);
+//
+//                            Timer timer = new Timer();
+//                            TimerTask task = new TimerTask()
+//                            {
+//                                @Override
+//                                public void run()
+//                                {
+//                                    controller.handle_search_button_action(new ActionEvent());
+//                                    //System.out.println("TIMEEEER");
+//                                }
+//                            };
+//
+//                            timer.schedule(task,0,1000);
+
+                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
+                            {
+                                @Override
+                                public void handle(ActionEvent event)
+                                {
+                                    controller.test();
+                                }
+                            }));
+
+                            time.setCycleCount(Timeline.INDEFINITE);
+                            time.play();
 
                             pane.getChildren().setAll(root);
 
@@ -146,6 +177,7 @@ public class main_io_controller implements Initializable
         //user_text_field.getText()
         //pass_text_field.getText()
     }
+
 
 
 }

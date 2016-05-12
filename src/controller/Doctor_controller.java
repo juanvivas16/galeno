@@ -20,14 +20,11 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Date;
+import java.sql.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.util.*;
+
 
 
 /**
@@ -65,9 +62,10 @@ public class Doctor_controller implements Initializable
                 "a.date = ' " + new Date(date.getTime()).toString() + " ' AND a.done = '0' ";
 
 
-        System.out.print(new Date(date.getTime()).toString());
+        //System.out.print(new Date(date.getTime()).toString());
         ResultSet rss = db.execute_query(qu);
         List<Appointment> appointments_list = new ArrayList<Appointment>();
+
 
         try
         {
@@ -104,6 +102,63 @@ public class Doctor_controller implements Initializable
         {
             e.printStackTrace();
         }
+
+    }
+
+    public void test()
+    {
+        this.process_button.setDisable(true);
+
+        //populate appointment list view
+        java.util.Date date = new java.util.Date();
+
+        String qu = "SELECT a.id, a.patient_id, a.doctor_id, a.description, a.type, a.date, a.time, p.name," +
+                " p.last_name FROM Appointment a, Person p " +
+                "WHERE a.doctor_id = p.id AND a.doctor_id = '" + this.user_id.toString() + "' AND " +
+                "a.date = ' " + new Date(date.getTime()).toString() + " ' AND a.done = '0' ";
+
+
+        //System.out.print(new Date(date.getTime()).toString());
+        ResultSet rss = db.execute_query(qu);
+        List<Appointment> appointments_list = new ArrayList<Appointment>();
+
+
+        try
+        {
+            if (rss != null)
+            {
+                while (rss.next())
+                {
+                    Appointment a = new Appointment();
+                    a.set_id(rss.getLong("id"));
+                    a.set_patient_id(rss.getLong("patient_id"));
+                    a.set_doctor_id(rss.getLong("doctor_id"));
+                    a.set_date(rss.getDate("date"));
+                    a.set_time(rss.getTime("time"));
+                    a.set_description(rss.getString("description"));
+                    a.set_type(Appointment_type.valueOf(rss.getString("type")));
+
+                    appointments_list.add(a);
+                }
+                ObservableList<Appointment> observable_appointment_list = FXCollections.observableArrayList(appointments_list);
+                this.next_appointment_list_view.getItems().clear();
+                this.next_appointment_list_view.setItems(observable_appointment_list);
+                this.next_appointment_list_view.getSelectionModel().selectFirst();
+
+
+                //if the list view is not empty, at least one element selected, enable process button
+                if (! this.next_appointment_list_view.getItems().isEmpty())
+                {
+                    this.process_button.setDisable(false);
+                }
+
+            }
+
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -269,5 +324,6 @@ public class Doctor_controller implements Initializable
     {
         this.user_id = user_id;
     }
+
 
 }
