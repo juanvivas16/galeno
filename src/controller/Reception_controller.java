@@ -35,9 +35,8 @@ public class Reception_controller implements Initializable
     @FXML protected TextField id_text_field;
     @FXML private TextField name_text_field;
     @FXML private TextField last_name_text_field;
-    @FXML private TextField direction_text_field;
+    @FXML private TextArea direction_text_field;
     @FXML private TextField telephone_text_field;
-  //  @FXML private TextField gender_text_field;
     @FXML private DatePicker birth_date_date_picker;
     @FXML private Button new_appointment_button;
     @FXML private Button process_appointment_button;
@@ -68,24 +67,18 @@ public class Reception_controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
-        System.out.println("ID USuario");
-        System.out.println(user_id);
-        System.out.println(get_user_id());
         String qu_name = "SELECT p.name FROM User u JOIN Person p ON ' " + user_id.toString() + " ' = p.id GROUP BY name";
         ResultSet rsname = db.execute_query(qu_name);
         try
         {
             if (rsname.next())
             {
-                status_label.setText(rsname.getString("name"));
+                user_name_label.setText(rsname.getString("name"));
             }
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
-
-
 
 
         //populate appointment list view
@@ -123,9 +116,6 @@ public class Reception_controller implements Initializable
 
             }
 
-//            rsname.next();
-//            user_name_label.setText(rsname.getString("name"));
-
         }catch (SQLException e)
         {
             e.printStackTrace();
@@ -142,7 +132,8 @@ public class Reception_controller implements Initializable
         this.gender_combo_box.getItems().clear();
         this.gender_combo_box.setItems(type_list);
         this.gender_combo_box.setDisable(true);
-       // this.gender_combo_box.getSelectionModel().selectFirst();
+        this.direction_text_field.setDisable(true);
+        // this.gender_combo_box.getSelectionModel().selectFirst();
     }
 
 
@@ -181,7 +172,7 @@ public class Reception_controller implements Initializable
         this.last_name_text_field.setDisable(true);
         this.direction_text_field.setDisable(true);
         this.telephone_text_field.setDisable(true);
-       // this.gender_text_field.setDisable(true);
+        // this.gender_text_field.setDisable(true);
         this.birth_date_date_picker.setDisable(true);
         this.gender_combo_box.setDisable(true);
 
@@ -302,7 +293,7 @@ public class Reception_controller implements Initializable
         this.last_name_text_field.setDisable(false);
         this.direction_text_field.setDisable(false);
         this.telephone_text_field.setDisable(false);
-       // this.gender_text_field.setDisable(false);
+        // this.gender_text_field.setDisable(false);
         this.birth_date_date_picker.setDisable(false);
         this.gender_combo_box.setDisable(false);
 
@@ -356,7 +347,7 @@ public class Reception_controller implements Initializable
             this.status_label.setText("¡Error en Telefono!");
 
 
-     //   this.person.set_gender(gender_text_field.getText());
+        //   this.person.set_gender(gender_text_field.getText());
         this.person.set_birth_date(Date.valueOf(birth_date_date_picker.getValue()));
 
         String temp_gender = this.gender_combo_box.getSelectionModel().getSelectedItem().toString();
@@ -395,7 +386,7 @@ public class Reception_controller implements Initializable
             this.last_name_text_field.setDisable(true);
             this.direction_text_field.setDisable(true);
             this.telephone_text_field.setDisable(true);
-           // this.gender_text_field.setDisable(true);
+            // this.gender_text_field.setDisable(true);
             this.birth_date_date_picker.setDisable(true);
             this.gender_combo_box.setDisable(true);
 

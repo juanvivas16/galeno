@@ -32,7 +32,6 @@
       <TextField fx:id="id_text_field" layoutX="140.0" layoutY="166.0" onInputMethodTextChanged="#handle_id_text_changed_action" prefHeight="29.0" prefWidth="163.0" />
       <TextField fx:id="name_text_field" disable="true" layoutX="140.0" layoutY="201.0" onInputMethodTextChanged="#handle_name_text_changed_action" prefHeight="29.0" prefWidth="163.0" />
       <TextField fx:id="last_name_text_field" disable="true" layoutX="140.0" layoutY="238.0" prefHeight="29.0" prefWidth="163.0" />
-      <TextField fx:id="direction_text_field" disable="true" layoutX="140.0" layoutY="367.0" prefHeight="72.0" prefWidth="163.0" />
       <TextField fx:id="telephone_text_field" disable="true" layoutX="140.0" layoutY="306.0" prefHeight="29.0" prefWidth="163.0" />
       <ComboBox fx:id="gender_combo_box" layoutX="140.0" layoutY="339.0" prefHeight="25.0" prefWidth="163.0" promptText="Masculino" />
       <DatePicker fx:id="birth_date_date_picker" disable="true" layoutX="140.0" layoutY="272.0" prefHeight="29.0" prefWidth="163.0" />
@@ -59,5 +58,6 @@
       <Label layoutX="251.0" layoutY="132.0" text="RECEPCION" />
       <Label layoutX="507.0" layoutY="43.0" text="Usuario:" />
       <Label fx:id="user_name_label" layoutX="561.0" layoutY="43.0" text="__" />
+      <TextArea fx:id="direction_text_field" layoutX="140.0" layoutY="367.0" prefHeight="78.0" prefWidth="163.0" />
    </children>
 </Pane>
