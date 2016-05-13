@@ -92,7 +92,7 @@ public class main_io_controller implements Initializable
                             Parent root = (Parent)fxmlLoader.load();
                             Reception_controller controller = fxmlLoader.<Reception_controller>getController();
                             controller.set_user_id(user_id);
-
+                            controller.initialize(null, null);
                             //Scene scene = new Scene(root);
                             pane.getChildren().setAll(root);
 
@@ -133,17 +133,17 @@ public class main_io_controller implements Initializable
 //
 //                            timer.schedule(task,0,1000);
 
-//                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
-//                            {
-//                                @Override
-//                                public void handle(ActionEvent event)
-//                                {
-//                                    controller.test();
-//                                }
-//                            }));
-//
-//                            time.setCycleCount(Timeline.INDEFINITE);
-//                            time.play();
+                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
+                            {
+                                @Override
+                                public void handle(ActionEvent event)
+                                {
+                                    controller.test();
+                                }
+                            }));
+
+                            time.setCycleCount(Timeline.INDEFINITE);
+                            time.play();
 
                             pane.getChildren().setAll(root);
 
