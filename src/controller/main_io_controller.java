@@ -133,17 +133,17 @@ public class main_io_controller implements Initializable
 //
 //                            timer.schedule(task,0,1000);
 
-                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
-                            {
-                                @Override
-                                public void handle(ActionEvent event)
-                                {
-                                    controller.test();
-                                }
-                            }));
-
-                            time.setCycleCount(Timeline.INDEFINITE);
-                            time.play();
+//                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
+//                            {
+//                                @Override
+//                                public void handle(ActionEvent event)
+//                                {
+//                                    controller.test();
+//                                }
+//                            }));
+//
+//                            time.setCycleCount(Timeline.INDEFINITE);
+//                            time.play();
 
                             pane.getChildren().setAll(root);
 

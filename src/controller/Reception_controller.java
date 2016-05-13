@@ -50,6 +50,7 @@ public class Reception_controller implements Initializable
     @FXML private Label status_label;
     @FXML private ListView next_appointment_list_view;
     @FXML private ComboBox gender_combo_box;
+    @FXML private Label user_name_label;
 
     @FXML private Pane pane;
 
@@ -67,6 +68,16 @@ public class Reception_controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+
+        System.out.println("ID USuario");
+        System.out.println(user_id);
+        System.out.println(get_user_id());
+        //String qu_name = "SELECT p.name FROM User u JOIN Person p ON ' " +user_id.toString()+" ' = p.id GROUP BY name";
+        //ResultSet rsname = db.execute_query(qu_name);
+        //status_label.setText(rsname.getString());
+        //List<String> name_list = new ArrayList<>();
+
+
 
         //populate appointment list view
         java.util.Date date = new java.util.Date();
@@ -102,6 +113,10 @@ public class Reception_controller implements Initializable
                 this.next_appointment_list_view.getSelectionModel().selectFirst();
 
             }
+
+//            rsname.next();
+//            user_name_label.setText(rsname.getString("name"));
+
         }catch (SQLException e)
         {
             e.printStackTrace();
@@ -457,5 +472,6 @@ public class Reception_controller implements Initializable
         else
             return true;
     }
+
 
 }
