@@ -49,11 +49,11 @@ public class AppointmentTest
     @org.junit.Test
     public void set_date() throws Exception
     {
-        app.set_date(Date.valueOf("2016-03-26"));
-        assertEquals(Date.valueOf(LocalDate.now()), app.get_date());
-
 //        app.set_date(Date.valueOf("2016-03-26"));
-//        assertEquals(Date.valueOf("2016-05-14"), app.get_date());
+//        assertEquals(Date.valueOf(LocalDate.now()), app.get_date());
+
+        app.set_date(Date.valueOf("2016-05-16"));
+        assertEquals(Date.valueOf("2016-05-16"), app.get_date());
     }
 
     @org.junit.Test

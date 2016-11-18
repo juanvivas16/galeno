@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar:///usr/share/java/mysql-connector-java.jar!/" />
+          <root url="jar:///usr/lib/jvm/java-8-openjdk/lib/jfxrt.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -29,6 +29,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/junit-4.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar:///usr/share/java/mysql-connector-java-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -109,11 +109,11 @@ public class Appointment
 
     public void set_date(Date _date)
     {
-        Date d = Date.valueOf(LocalDate.now());
-
-        if(d.after(_date))
-            this._date = d;
-        else
+//        Date d = Date.valueOf(LocalDate.now());
+//
+//        if(d.after(_date))
+//            this._date = d;
+//        else
             this._date = _date;
     }
 

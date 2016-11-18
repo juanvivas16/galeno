@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Stage primary_stage;
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -15,6 +16,8 @@ public class Main extends Application {
         primaryStage.setTitle("Iniciar sesion | Galeno (C) 2016");
         primaryStage.setScene(new Scene(root, 630 , 640));
         primaryStage.show();
+
+        primary_stage = primaryStage;
     }
 
 

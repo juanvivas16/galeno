@@ -16,7 +16,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Archivo">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Salir" />
+                  <MenuItem mnemonicParsing="false" onAction="#handle_menu_item_exit_action" text="Salir" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Ayuda">
@@ -33,5 +33,7 @@
       <Label layoutX="45.0" layoutY="498.0" text="Estado:" />
       <Label fx:id="status_label" layoutX="98.0" layoutY="498.0" text="___" />
       <Button fx:id="process_button" disable="true" layoutX="328.0" layoutY="453.0" mnemonicParsing="false" onAction="#handle_process_button_action" prefHeight="45.0" prefWidth="84.0" text="Procesar" />
+      <Label layoutX="517.0" layoutY="43.0" text="Usuario:" />
+      <Label fx:id="user_name_label" layoutX="571.0" layoutY="43.0" text="___" />
    </children>
 </Pane>

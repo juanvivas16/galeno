@@ -10,9 +10,7 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-/**
- * Created by victory on 3/27/16.
- */
+
 public class Db_connection
 {
     private Connection _con = null;

@@ -44,5 +44,7 @@
       <Separator layoutX="423.0" layoutY="182.0" orientation="VERTICAL" prefHeight="285.0" prefWidth="4.0" />
       <Button fx:id="edit_appointment_button" layoutX="451.0" layoutY="438.0" mnemonicParsing="false" onAction="#handle_edit_appointment_button_action" prefHeight="25.0" prefWidth="69.0" text="Editar" />
       <Button fx:id="remove_appointment_button1" layoutX="528.0" layoutY="438.0" mnemonicParsing="false" onAction="#handle_remove_appointment_button_action" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+      <Label layoutX="507.0" layoutY="43.0" text="Usuario:" />
+      <Label fx:id="user_name_label" layoutX="561.0" layoutY="43.0" text="___" />
    </children>
 </Pane>

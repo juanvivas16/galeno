@@ -12,11 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import main.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +27,7 @@ import java.util.*;
 
 /**
  * Created by victory on 4/21/16.
+ * Clase del controlador para la interfaz del médico
  */
 public class Doctor_controller implements Initializable
 {
@@ -37,6 +36,8 @@ public class Doctor_controller implements Initializable
     @FXML private Label status_label;
     @FXML private Pane pane;
     @FXML private Button process_button;
+    @FXML private Label user_name_label;
+    @FXML private MenuItem menuItem_exit;
 
 
     @FXML private Db_connection db = new Db_connection();
@@ -47,7 +48,12 @@ public class Doctor_controller implements Initializable
     private Long appointment_id;
 
 
-
+    /**
+     * Inicializador del controlador de la interfaz
+     * poblar las listas con las citas proximas (de hoy)
+     * @param location ubicacion
+     * @param resources recursos
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -103,10 +109,29 @@ public class Doctor_controller implements Initializable
             e.printStackTrace();
         }
 
+        String qu_name = "SELECT p.name FROM User u JOIN Person p ON ' " + user_id.toString() + " ' = p.id GROUP BY name";
+        ResultSet rsname = db.execute_query(qu_name);
+        try
+        {
+            if (rsname.next())
+            {
+                user_name_label.setText(rsname.getString("name"));
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
+    /**
+     * Procesar la lógica del examen
+     * desactivar el boton de procesar
+     * preparar la consulta para obtener los examenes relacionados al paciente con user_id
+     */
     public void test()
     {
+        System.out.print("*");
         this.process_button.setDisable(true);
 
         //populate appointment list view
@@ -147,7 +172,7 @@ public class Doctor_controller implements Initializable
 
 
                 //if the list view is not empty, at least one element selected, enable process button
-                if (! this.next_appointment_list_view.getItems().isEmpty())
+                if ( ! observable_appointment_list.isEmpty())
                 {
                     this.process_button.setDisable(false);
                 }
@@ -161,14 +186,18 @@ public class Doctor_controller implements Initializable
 
     }
 
-
     @FXML protected void handle_id_text_changed_action(ActionEvent event)
     {
         //todo search as start typing
 
     }
 
-
+    /**
+     * Procesar la lógica del botón Buscar
+     * si no hay texto, se muestran todas las citas de día actual (hoy)
+     * de lo contrario se buscara la/s cita/s del paciente con el id dado
+     * @param event
+     */
     @FXML protected void handle_search_button_action(ActionEvent event)
     {
         if (this.id_text_field.getText().isEmpty())
@@ -233,7 +262,15 @@ public class Doctor_controller implements Initializable
 
     }
 
-
+    /**
+     * Procesar la lógica del boton Procesar
+     * Preparar el modelo de una consulta, si la consulta aun esta abierto, procesar la misam
+     * de lo contario crear una nueva consulta.
+     * Cambiar a la interfaz de consulta, y pasar los datos necesarios al controlador de consulta
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML protected void handle_process_button_action(ActionEvent event) throws IOException, SQLException
     {
         //verify and get selected row from the list of appointments
@@ -280,12 +317,20 @@ public class Doctor_controller implements Initializable
             controller.set_appointment_id(ap.get_id());
             controller.populate_records_list_view(null);
 
+            Main.primary_stage.setTitle("Consulta | Galeno (C) 2016");
+
             pane.getChildren().setAll(root);
 
 
         }
     }
 
+    /**
+     * Insertar una consulta en la base de datos
+     * prepara la consulta y luego ejecutarla
+     * @return int estado d ela inserción
+     * @throws SQLException
+     */
     private int insert_consultation_in_db() throws SQLException
     {
 
@@ -314,15 +359,29 @@ public class Doctor_controller implements Initializable
 
     }
 
-
+    /**
+     * Obtener el id del usuario
+     * @return Long id del usuario
+     */
     public Long get_user_id()
     {
         return user_id;
     }
 
+    /**
+     * Asignar el id del usuario
+     * @param user_id Long id de entrada
+     */
     public void set_user_id(Long user_id)
     {
         this.user_id = user_id;
+    }
+
+
+    @FXML
+    protected void handle_menu_item_exit_action(ActionEvent e)
+    {
+        System.exit(0);
     }
 
 

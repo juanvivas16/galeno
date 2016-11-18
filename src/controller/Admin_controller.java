@@ -480,4 +480,11 @@ public class Admin_controller implements Initializable
     }
 
 
+    @FXML
+    protected void handle_menu_item_exit_action(ActionEvent e)
+    {
+        System.exit(0);
+    }
+
+
 }

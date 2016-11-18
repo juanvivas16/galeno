@@ -40,13 +40,16 @@ public class Appointment_controller implements Initializable
     @FXML private TextArea description_text_area;
     @FXML private ListView appointment_list_view;
     @FXML private Pane pane;
+    @FXML private Label user_name_label;
 
-    private Long user_id, patient_id, doctor_id;
+    private Long patient_id, doctor_id;
     private Db_connection db = new Db_connection();
 
     private boolean edit_mode = false;
 
     private Long appointment_id = new Long(0);
+    private Long user_id = new Long(0);
+
 
 
     @Override
@@ -99,9 +102,19 @@ public class Appointment_controller implements Initializable
         //set date to today
         this.date_date_picker.setValue(LocalDate.now());
 
-        /*
-
-        */
+        //USER NAME LABEL
+        String qu_name = "SELECT p.name FROM User u JOIN Person p ON ' " + user_id.toString() + " ' = p.id GROUP BY name";
+        ResultSet rsname = db.execute_query(qu_name);
+        try
+        {
+            if (rsname.next())
+            {
+                user_name_label.setText(rsname.getString("name"));
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
@@ -244,6 +257,7 @@ public class Appointment_controller implements Initializable
                 Parent root = (Parent) fxmlLoader.load();
                 Reception_controller controller = fxmlLoader.<Reception_controller>getController();
                 controller.set_user_id(this.user_id);
+                controller.initialize(null, null);
                 controller.id_text_field.setText(this.patient_id.toString());
                 controller.handle_search_button_action(new ActionEvent());
                 pane.getChildren().setAll(root);
@@ -272,6 +286,7 @@ public class Appointment_controller implements Initializable
                 Reception_controller controller = fxmlLoader.<Reception_controller>getController();
                 controller.set_user_id(this.user_id);
                 controller.id_text_field.setText(this.patient_id.toString());
+                controller.initialize(null, null);
                 controller.handle_search_button_action(new ActionEvent());
                 pane.getChildren().setAll(root);
 
@@ -331,6 +346,7 @@ public class Appointment_controller implements Initializable
         Parent root = (Parent) fxmlLoader.load();
         Reception_controller controller = fxmlLoader.<Reception_controller>getController();
         controller.set_user_id(this.user_id);
+        controller.initialize(null, null);
         controller.id_text_field.setText(this.patient_id.toString());
         controller.handle_search_button_action(new ActionEvent());
         pane.getChildren().setAll(root);

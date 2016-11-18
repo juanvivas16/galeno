@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import db_helper.Db_connection;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import main.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,9 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Clase del cntrolador inicial de la aplicacion.
+ */
 public class main_io_controller implements Initializable
 {
     @FXML private TextField user_text_field;
@@ -32,18 +36,28 @@ public class main_io_controller implements Initializable
 
     @FXML private Pane pane;
 
-
+    /**
+     * Inicializa el controlador del JAVAFX que permite
+     * iniciar sesión en la aplicacion
+     * @param location ubicacion anteior JAVAFX
+     * @param resources conjunto de recursos JAVAFX
+     * @return
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         // todo temp setting to expedite login process.
         //this.user_text_field.setText("jose");  //doctor
-        this.user_text_field.setText("adm");   //admin
-       // this.user_text_field.setText("nom");        //reception
+        //this.user_text_field.setText("adm");   //admin
+        this.user_text_field.setText("nom");        //reception
         this.pass_text_field.setText("1234");
     }
 
-
+    /**
+     * Verificar si el usuario esta reguistrado en el sistem,
+     * y mostrar la interfaz que corresponda segun el rol del usuario
+     * @param event
+     */
     @FXML
     protected void handle_login_button_action(ActionEvent event)
     { //throws SQLException {
@@ -94,6 +108,10 @@ public class main_io_controller implements Initializable
                             controller.set_user_id(user_id);
                             controller.initialize(null, null);
                             //Scene scene = new Scene(root);
+
+                            Main.primary_stage.setTitle("Recepcion | Galeno (C) 2016");
+
+
                             pane.getChildren().setAll(root);
 
                             //Stage stage = (Stage) root.getScene().getWindow();
@@ -133,17 +151,19 @@ public class main_io_controller implements Initializable
 //
 //                            timer.schedule(task,0,1000);
 
-//                            Timeline time = new Timeline(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>()
-//                            {
-//                                @Override
-//                                public void handle(ActionEvent event)
-//                                {
-//                                    controller.test();
-//                                }
-//                            }));
-//
-//                            time.setCycleCount(Timeline.INDEFINITE);
-//                            time.play();
+                            Timeline time = new Timeline(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>()
+                            {
+                                @Override
+                                public void handle(ActionEvent event)
+                                {
+                                    controller.test();
+                                }
+                            }));
+
+                            time.setCycleCount(Timeline.INDEFINITE);
+                            //time.play();
+
+                            Main.primary_stage.setTitle("Medico | Galeno (C) 2016");
 
                             pane.getChildren().setAll(root);
 
@@ -160,6 +180,9 @@ public class main_io_controller implements Initializable
                             Admin_controller controller = fxmlLoader.<Admin_controller>getController();
                             controller.set_user_id(user_id);
                             //controller.initialize(null, null);
+
+                            Main.primary_stage.setTitle("Admin | Galeno (C) 2016");
+
 
                             pane.getChildren().setAll(root);
 
@@ -178,6 +201,10 @@ public class main_io_controller implements Initializable
         //pass_text_field.getText()
     }
 
-
+    @FXML
+    protected void handle_menu_item_exit_action(ActionEvent e)
+    {
+        System.exit(0);
+    }
 
 }
